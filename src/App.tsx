@@ -1,8 +1,14 @@
+import NavMarketing from './components/marketing/nav-marketing/NavMarketing'
+
 
 function App() {
+ 
+
   return (
-    <div className="App"></div>
-  );
+    <>
+    <NavMarketing />
+    </>
+  )
 }
 
-export default App;
+export default App
