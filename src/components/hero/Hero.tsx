@@ -1,64 +1,286 @@
 export default function Hero() {
   return (
-    <div className="bg-gray-900">
-    
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
+<div className="relative isolate overflow-hidden bg-gray-950">
+  {/* Background image */}
+  <div className="absolute inset-0 -z-20">
+    <img
+      src="src/assets/hero-img.jpg"
+      alt="Ivan Stroi строителен проект"
+      className="
+        h-full
+        w-full
+        object-cover
+        object-center
+        transition-transform
+        duration-[2000ms]
+        hover:scale-105
+      "
+    />
+  </div>
+
+  {/* Dark overlay */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute
+      inset-0
+      -z-10
+      bg-gradient-to-r
+      from-gray-950
+      via-gray-950/90
+      to-gray-950/40
+    "
+  />
+
+  {/* Bottom gradient */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute
+      inset-x-0
+      bottom-0
+      -z-10
+      h-48
+      bg-gradient-to-t
+      from-gray-950
+      to-transparent
+    "
+  />
+
+  {/* Amber ambient glow */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute
+      -left-32
+      top-1/3
+      -z-10
+      h-96
+      w-96
+      rounded-full
+      bg-amber-500/10
+      blur-3xl
+    "
+  />
+
+  {/* Hero content */}
+  <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="flex min-h-[calc(100vh-120px)] items-center py-24 sm:py-32 lg:py-40">
+      <div className="max-w-3xl">
+
+        {/* Badge */}
+        <div className="mb-8">
           <div
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-          />
+            className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-white/10
+              bg-white/5
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-gray-300
+              shadow-lg
+              shadow-black/10
+              backdrop-blur-md
+            "
+          >
+            <span className="relative flex size-2">
+              <span
+                className="
+                  absolute
+                  inline-flex
+                  size-full
+                  animate-ping
+                  rounded-full
+                  bg-amber-400
+                  opacity-75
+                "
+              />
+
+              <span
+                className="
+                  relative
+                  inline-flex
+                  size-2
+                  rounded-full
+                  bg-amber-500
+                "
+              />
+            </span>
+
+            Професионално строителство
+          </div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-400">
-                <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
+
+        {/* Heading */}
+        <h1
+          className="
+            max-w-4xl
+            text-5xl
+            font-bold
+            tracking-tight
+            text-white
+            sm:text-7xl
+            lg:text-8xl
+          "
+        >
+          Вашият дом.
+          <br />
+
+          <span className="text-amber-500">
+            Нашата отговорност.
+          </span>
+        </h1>
+
+        {/* Description */}
+        <p
+          className="
+            mt-8
+            max-w-2xl
+            text-lg
+            leading-8
+            text-gray-300
+            sm:text-xl
+          "
+        >
+          Изграждаме пространства, които остават.
+          Качествено строителство, прецизност и отношение
+          към всеки детайл.
+        </p>
+
+        {/* CTA */}
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href="/contacts"
+            className="
+              group
+              inline-flex
+              items-center
+              gap-3
+              rounded-xl
+              bg-amber-500
+              px-6
+              py-3.5
+              text-sm
+              font-bold
+              text-gray-950
+              shadow-xl
+              shadow-amber-500/20
+              transition-all
+              duration-200
+              hover:bg-amber-400
+              hover:shadow-2xl
+              hover:shadow-amber-500/30
+              active:scale-95
+            "
+          >
+            Заяви безплатен оглед
+
+            <span
+              className="
+                transition-transform
+                duration-200
+                group-hover:translate-x-1
+              "
+            >
+              →
+            </span>
+          </a>
+
+          <a
+            href="/gallery"
+            className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-xl
+              border
+              border-white/15
+              bg-white/5
+              px-6
+              py-3.5
+              text-sm
+              font-semibold
+              text-white
+              backdrop-blur-sm
+              transition-all
+              duration-200
+              hover:border-white/25
+              hover:bg-white/10
+            "
+          >
+            Разгледай проектите
+          </a>
+        </div>
+
+        {/* Trust indicators */}
+        <div className="mt-14 border-t border-white/10 pt-8">
+          <div className="flex flex-wrap gap-x-10 gap-y-6">
+            <div>
+              <p className="text-2xl font-bold text-white">
+                10+
+              </p>
+
+              <p className="mt-1 text-sm text-gray-400">
+                години опит
+              </p>
+            </div>
+
+            <div className="hidden h-12 w-px bg-white/10 sm:block" />
+
+            <div>
+              <p className="text-2xl font-bold text-white">
+                100+
+              </p>
+
+              <p className="mt-1 text-sm text-gray-400">
+                реализирани проекта
+              </p>
+            </div>
+
+            <div className="hidden h-12 w-px bg-white/10 sm:block" />
+
+            <div>
+              <p className="text-2xl font-bold text-white">
+                100%
+              </p>
+
+              <p className="mt-1 text-sm text-gray-400">
+                отношение към детайла
+              </p>
             </div>
           </div>
-          <div className="text-center">
-            <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
-              Data to enrich your online business
-            </h1>
-            <p className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-white">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-          <div
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
-          />
         </div>
       </div>
     </div>
+  </div>
+
+  {/* Scroll indicator */}
+  <div
+    className="
+      absolute
+      bottom-8
+      left-1/2
+      hidden
+      -translate-x-1/2
+      flex-col
+      items-center
+      gap-2
+      text-gray-500
+      lg:flex
+    "
+  >
+    <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">
+      Scroll
+    </span>
+
+    <div className="h-10 w-px bg-gradient-to-b from-amber-500 to-transparent" />
+  </div>
+</div>
   )
 }
