@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+.projects-swiper .swiper-button-next,
+.projects-swiper .swiper-button-prev {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  border-radius: 9999px;
+  background: rgb(17 24 39 / 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.projects-swiper .swiper-button-next::after,
+.projects-swiper .swiper-button-prev::after {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
+.projects-swiper .swiper-button-next:hover,
+.projects-swiper .swiper-button-prev:hover {
+  border-color: rgb(245 158 11 / 0.5);
+  background: rgb(245 158 11);
+}
+
+.projects-swiper .swiper-button-next:hover::after,
+.projects-swiper .swiper-button-prev:hover::after {
+  color: rgb(17 24 39);
+}
+
+.reviews-swiper .swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+  opacity: 1;
+  background: rgb(255 255 255 / 0.2);
+  transition: all 0.3s ease;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 9999px;
+  background: rgb(245 158 11);
+}
