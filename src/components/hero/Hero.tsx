@@ -1,12 +1,20 @@
+import { CLOUDINARY_BASE_URL } from "../../utils/url";
+import { OptimizedImage } from "../image/OptimizedImage";
+
+
+
 export default function Hero() {
   return (
-<div className="relative isolate overflow-hidden bg-gray-950">
-  {/* Background image */}
-  <div className="absolute inset-0 -z-20">
-    <img
-      src="src/assets/hero-img.jpg"
-      alt="Ivan Stroi строителен проект"
-      className="
+    <div className="relative isolate overflow-hidden bg-gray-950">
+      <div className="absolute inset-0 -z-20">
+        <OptimizedImage
+          url={`${CLOUDINARY_BASE_URL}/v1690000000/hero-img.jpg`}
+          alt="Ivan Stroi строителен проект"
+          width={1920}
+          height={1080}
+          priority
+          sizes="100vw"
+          className="
         h-full
         w-full
         object-cover
@@ -15,13 +23,12 @@ export default function Hero() {
         duration-[2000ms]
         hover:scale-105
       "
-    />
-  </div>
+        />
+      </div>
 
-  {/* Dark overlay */}
-  <div
-    aria-hidden="true"
-    className="
+      <div
+        aria-hidden="true"
+        className="
       absolute
       inset-0
       -z-10
@@ -30,12 +37,10 @@ export default function Hero() {
       via-gray-950/90
       to-gray-950/40
     "
-  />
-
-  {/* Bottom gradient */}
-  <div
-    aria-hidden="true"
-    className="
+      />
+      <div
+        aria-hidden="true"
+        className="
       absolute
       inset-x-0
       bottom-0
@@ -45,12 +50,12 @@ export default function Hero() {
       from-gray-950
       to-transparent
     "
-  />
+      />
 
-  {/* Amber ambient glow */}
-  <div
-    aria-hidden="true"
-    className="
+      {/* Amber ambient glow */}
+      <div
+        aria-hidden="true"
+        className="
       absolute
       -left-32
       top-1/3
@@ -61,17 +66,16 @@ export default function Hero() {
       bg-amber-500/10
       blur-3xl
     "
-  />
+      />
 
-  {/* Hero content */}
-  <div className="mx-auto max-w-7xl px-6 lg:px-8">
-    <div className="flex min-h-[calc(100vh-120px)] items-center py-24 sm:py-32 lg:py-40">
-      <div className="max-w-3xl">
-
-        {/* Badge */}
-        <div className="mb-8">
-          <div
-            className="
+      {/* Hero content */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex min-h-[calc(100vh-120px)] items-center py-24 sm:py-32 lg:py-40">
+          <div className="max-w-3xl">
+            {/* Badge */}
+            <div className="mb-8">
+              <div
+                className="
               inline-flex
               items-center
               gap-2
@@ -88,10 +92,10 @@ export default function Hero() {
               shadow-black/10
               backdrop-blur-md
             "
-          >
-            <span className="relative flex size-2">
-              <span
-                className="
+              >
+                <span className="relative flex size-2">
+                  <span
+                    className="
                   absolute
                   inline-flex
                   size-full
@@ -100,26 +104,25 @@ export default function Hero() {
                   bg-amber-400
                   opacity-75
                 "
-              />
+                  />
 
-              <span
-                className="
+                  <span
+                    className="
                   relative
                   inline-flex
                   size-2
                   rounded-full
                   bg-amber-500
                 "
-              />
-            </span>
+                  />
+                </span>
+                Професионално строителство
+              </div>
+            </div>
 
-            Професионално строителство
-          </div>
-        </div>
-
-        {/* Heading */}
-        <h1
-          className="
+            {/* Heading */}
+            <h1
+              className="
             max-w-4xl
             text-5xl
             font-bold
@@ -128,18 +131,15 @@ export default function Hero() {
             sm:text-7xl
             lg:text-8xl
           "
-        >
-          Вашият дом.
-          <br />
+            >
+              Вашият дом.
+              <br />
+              <span className="text-amber-500">Нашата отговорност.</span>
+            </h1>
 
-          <span className="text-amber-500">
-            Нашата отговорност.
-          </span>
-        </h1>
-
-        {/* Description */}
-        <p
-          className="
+            {/* Description */}
+            <p
+              className="
             mt-8
             max-w-2xl
             text-lg
@@ -147,17 +147,15 @@ export default function Hero() {
             text-gray-300
             sm:text-xl
           "
-        >
-          Изграждаме пространства, които остават.
-          Качествено строителство, прецизност и отношение
-          към всеки детайл.
-        </p>
+            >
+              Изграждаме пространства, които остават. Качествено строителство,
+              прецизност и отношение към всеки детайл.
+            </p>
 
-        {/* CTA */}
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="/contacts"
-            className="
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a
+                href="/contact-us"
+                className="
               group
               inline-flex
               items-center
@@ -178,23 +176,22 @@ export default function Hero() {
               hover:shadow-amber-500/30
               active:scale-95
             "
-          >
-            Заяви безплатен оглед
-
-            <span
-              className="
+              >
+                Заяви безплатен оглед
+                <span
+                  className="
                 transition-transform
                 duration-200
                 group-hover:translate-x-1
               "
-            >
-              →
-            </span>
-          </a>
+                >
+                  →
+                </span>
+              </a>
 
-          <a
-            href="/gallery"
-            className="
+              <a
+                href="/gallery"
+                className="
               inline-flex
               items-center
               gap-2
@@ -213,74 +210,44 @@ export default function Hero() {
               hover:border-white/25
               hover:bg-white/10
             "
-          >
-            Разгледай проектите
-          </a>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="mt-14 border-t border-white/10 pt-8">
-          <div className="flex flex-wrap gap-x-10 gap-y-6">
-            <div>
-              <p className="text-2xl font-bold text-white">
-                10+
-              </p>
-
-              <p className="mt-1 text-sm text-gray-400">
-                години опит
-              </p>
+              >
+                Разгледай проектите
+              </a>
             </div>
 
-            <div className="hidden h-12 w-px bg-white/10 sm:block" />
 
-            <div>
-              <p className="text-2xl font-bold text-white">
-                100+
-              </p>
+            <div className="mt-14 border-t border-white/10 pt-8">
+              <div className="flex flex-wrap gap-x-10 gap-y-6">
+                <div>
+                  <p className="text-2xl font-bold text-white">10+</p>
 
-              <p className="mt-1 text-sm text-gray-400">
-                реализирани проекта
-              </p>
-            </div>
+                  <p className="mt-1 text-sm text-gray-400">години опит</p>
+                </div>
 
-            <div className="hidden h-12 w-px bg-white/10 sm:block" />
+                <div className="hidden h-12 w-px bg-white/10 sm:block" />
 
-            <div>
-              <p className="text-2xl font-bold text-white">
-                100%
-              </p>
+                <div>
+                  <p className="text-2xl font-bold text-white">24/7</p>
 
-              <p className="mt-1 text-sm text-gray-400">
-                отношение към детайла
-              </p>
+                  <p className="mt-1 text-sm text-gray-400">
+                    ангажираност
+                  </p>
+                </div>
+
+                <div className="hidden h-12 w-px bg-white/10 sm:block" />
+
+                <div>
+                  <p className="text-2xl font-bold text-white">100%</p>
+
+                  <p className="mt-1 text-sm text-gray-400">
+                    отношение към детайла
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  {/* Scroll indicator */}
-  <div
-    className="
-      absolute
-      bottom-8
-      left-1/2
-      hidden
-      -translate-x-1/2
-      flex-col
-      items-center
-      gap-2
-      text-gray-500
-      lg:flex
-    "
-  >
-    <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">
-      Scroll
-    </span>
-
-    <div className="h-10 w-px bg-gradient-to-b from-amber-500 to-transparent" />
-  </div>
-</div>
-  )
+  );
 }

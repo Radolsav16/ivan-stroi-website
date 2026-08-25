@@ -1,28 +1,57 @@
+import { useEffect, useRef, useState } from 'react';
+
 import {
   UserIcon,
   PhoneIcon,
   EnvelopeIcon,
   WrenchScrewdriverIcon,
+  ChevronDownIcon,
+  CheckIcon,
 } from '@heroicons/react/24/outline';
 
-const services = [
-  'Ремонт на баня',
-  'Ремонт на апартамент',
-  'Ремонт на къща',
-  'Строителство',
-  'Друг',
-];
+import { services } from './data';
 
 export default function ContactForm() {
+  const [selectedService, setSelectedService] = useState('');
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
+
+  const serviceDropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        serviceDropdownRef.current &&
+        !serviceDropdownRef.current.contains(event.target)
+      ) {
+        setIsServiceOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setIsServiceOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-gray-950 py-24 sm:py-32"
+      className="relative overflow-hidden bg-gray-950 py-20 sm:py-24 lg:py-32"
     >
-      {/* Ambient glow */}
       <div
         aria-hidden="true"
         className="
+          pointer-events-none
           absolute
           right-0
           top-1/2
@@ -36,21 +65,19 @@ export default function ContactForm() {
         "
       />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           className="
-            overflow-hidden
-            rounded-[2rem]
+            rounded-3xl
             border
             border-white/10
             bg-white/[0.02]
             shadow-2xl
             shadow-black/30
+            sm:rounded-[2rem]
           "
         >
-          <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
-            
-            {/* Left side */}
+          <div className="grid overflow-hidden rounded-3xl lg:grid-cols-[0.8fr_1.2fr] lg:rounded-[2rem]">
             <div
               className="
                 relative
@@ -58,17 +85,17 @@ export default function ContactForm() {
                 border-b
                 border-white/10
                 bg-gray-900
-                p-8
-                sm:p-12
+                p-6
+                sm:p-10
                 lg:border-b-0
                 lg:border-r
                 lg:p-14
               "
             >
-              {/* Glow */}
               <div
                 aria-hidden="true"
                 className="
+                  pointer-events-none
                   absolute
                   -right-32
                   -top-32
@@ -80,17 +107,18 @@ export default function ContactForm() {
               />
 
               <div className="relative">
-                {/* Eyebrow */}
-                <div className="mb-6 flex items-center gap-3">
-                  <span className="h-px w-10 bg-amber-500" />
+                <div className="mb-5 flex items-center gap-3 sm:mb-6">
+                  <span className="h-px w-8 bg-amber-500 sm:w-10" />
 
                   <span
                     className="
-                      text-xs
+                      text-[11px]
                       font-bold
                       uppercase
-                      tracking-[0.25em]
+                      tracking-[0.2em]
                       text-amber-500
+                      sm:text-xs
+                      sm:tracking-[0.25em]
                     "
                   >
                     Направете запитване
@@ -99,32 +127,33 @@ export default function ContactForm() {
 
                 <h2
                   className="
-                    text-4xl
+                    text-3xl
                     font-bold
                     tracking-tight
                     text-white
-                    sm:text-5xl
+                    sm:text-4xl
                   "
                 >
-                  Нека поговорим
-                  <span className="text-amber-500"> за Вашия проект.</span>
+                  Нека обсъдим
+                  <span className="block text-gray-400">
+                    вашия проект.
+                  </span>
                 </h2>
 
-                <p className="mt-6 text-base leading-7 text-gray-400">
+                <p className="mt-5 text-sm leading-7 text-gray-400 sm:mt-6 sm:text-base">
                   Опишете накратко какво планирате и ние ще се свържем
                   с Вас, за да обсъдим проекта и следващите стъпки.
                 </p>
 
-                {/* Contact info */}
-                <div className="mt-12 space-y-6">
+                <div className="mt-9 space-y-5 sm:mt-12 sm:space-y-6">
                   <a
                     href="tel:+359000000000"
-                    className="group flex items-center gap-4"
+                    className="group flex min-w-0 items-center gap-3 sm:gap-4"
                   >
                     <div
                       className="
                         flex
-                        size-11
+                        size-10
                         shrink-0
                         items-center
                         justify-center
@@ -136,17 +165,18 @@ export default function ContactForm() {
                         transition-colors
                         group-hover:bg-amber-500
                         group-hover:text-gray-950
+                        sm:size-11
                       "
                     >
                       <PhoneIcon className="size-5" />
                     </div>
 
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs text-gray-500">
                         Обадете ни се
                       </p>
 
-                      <p className="mt-1 font-semibold text-white">
+                      <p className="mt-1 truncate text-sm font-semibold text-white transition-colors group-hover:text-amber-500 sm:text-base">
                         +359 000 000 000
                       </p>
                     </div>
@@ -154,12 +184,12 @@ export default function ContactForm() {
 
                   <a
                     href="mailto:office@ivan-stroi.bg"
-                    className="group flex items-center gap-4"
+                    className="group flex min-w-0 items-center gap-3 sm:gap-4"
                   >
                     <div
                       className="
                         flex
-                        size-11
+                        size-10
                         shrink-0
                         items-center
                         justify-center
@@ -171,50 +201,31 @@ export default function ContactForm() {
                         transition-colors
                         group-hover:bg-amber-500
                         group-hover:text-gray-950
+                        sm:size-11
                       "
                     >
                       <EnvelopeIcon className="size-5" />
                     </div>
 
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs text-gray-500">
                         Пишете ни
                       </p>
 
-                      <p className="mt-1 font-semibold text-white">
+                      <p className="mt-1 truncate text-sm font-semibold text-white transition-colors group-hover:text-amber-500 sm:text-base">
                         office@ivan-stroi.bg
                       </p>
                     </div>
                   </a>
                 </div>
-
-                {/* Bottom message */}
-                <div
-                  className="
-                    mt-12
-                    border-t
-                    border-white/10
-                    pt-8
-                  "
-                >
-                  <p className="text-sm font-medium text-gray-500">
-                    Нашият подход
-                  </p>
-
-                  <p className="mt-2 text-lg font-semibold text-white">
-                    Коректност. Качество. Отговорност.
-                  </p>
-                </div>
               </div>
             </div>
+            <div className="min-w-0 p-6 sm:p-10 lg:p-14">
+              <form className="space-y-5 sm:space-y-6">
 
-            {/* Form */}
-            <div className="p-8 sm:p-12 lg:p-14">
-              <form className="space-y-6">
-                
-                {/* Name + Phone */}
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <div>
+                <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
+  
+                  <div className="min-w-0">
                     <label
                       htmlFor="name"
                       className="text-sm font-semibold text-white"
@@ -242,6 +253,7 @@ export default function ContactForm() {
                         placeholder="Вашето име"
                         className="
                           w-full
+                          min-w-0
                           rounded-xl
                           border
                           border-white/10
@@ -263,7 +275,8 @@ export default function ContactForm() {
                     </div>
                   </div>
 
-                  <div>
+                  {/* Phone */}
+                  <div className="min-w-0">
                     <label
                       htmlFor="phone"
                       className="text-sm font-semibold text-white"
@@ -291,6 +304,7 @@ export default function ContactForm() {
                         placeholder="+359 ..."
                         className="
                           w-full
+                          min-w-0
                           rounded-xl
                           border
                           border-white/10
@@ -314,7 +328,7 @@ export default function ContactForm() {
                 </div>
 
                 {/* Email */}
-                <div>
+                <div className="min-w-0">
                   <label
                     htmlFor="email"
                     className="text-sm font-semibold text-white"
@@ -342,6 +356,7 @@ export default function ContactForm() {
                       placeholder="you@example.com"
                       className="
                         w-full
+                        min-w-0
                         rounded-xl
                         border
                         border-white/10
@@ -363,8 +378,11 @@ export default function ContactForm() {
                   </div>
                 </div>
 
-                {/* Service */}
-                <div>
+                {/* SERVICE DROPDOWN */}
+                <div
+                  ref={serviceDropdownRef}
+                  className="relative z-30 min-w-0"
+                >
                   <label
                     htmlFor="service"
                     className="text-sm font-semibold text-white"
@@ -373,56 +391,163 @@ export default function ContactForm() {
                   </label>
 
                   <div className="relative mt-2">
+                    {/* Left icon */}
                     <WrenchScrewdriverIcon
+                      aria-hidden="true"
                       className="
                         pointer-events-none
                         absolute
                         left-4
                         top-1/2
+                        z-10
                         size-5
                         -translate-y-1/2
                         text-gray-600
                       "
                     />
 
-                    <select
+                    {/* Trigger */}
+                    <button
                       id="service"
-                      name="service"
-                      defaultValue=""
-                      className="
+                      type="button"
+                      aria-haspopup="listbox"
+                      aria-expanded={isServiceOpen}
+                      onClick={() =>
+                        setIsServiceOpen((previous) => !previous)
+                      }
+                      className={`
+                        flex
                         w-full
-                        appearance-none
+                        min-w-0
+                        items-center
+                        justify-between
                         rounded-xl
                         border
-                        border-white/10
-                        bg-gray-900
+                        bg-white/[0.03]
                         py-3.5
                         pl-12
                         pr-4
+                        text-left
                         text-sm
-                        text-gray-300
                         outline-none
                         transition
-                        focus:border-amber-500/50
-                        focus:ring-2
-                        focus:ring-amber-500/10
-                      "
+                        ${
+                          isServiceOpen
+                            ? 'border-amber-500/50 ring-2 ring-amber-500/10'
+                            : 'border-white/10 hover:border-white/20'
+                        }
+                      `}
                     >
-                      <option value="" disabled>
-                        Изберете услуга
-                      </option>
+                      <span
+                        className={
+                          selectedService
+                            ? 'min-w-0 truncate text-gray-300'
+                            : 'min-w-0 truncate text-gray-600'
+                        }
+                      >
+                        {selectedService || 'Изберете услуга'}
+                      </span>
 
-                      {services.map((service) => (
-                        <option key={service} value={service}>
-                          {service}
-                        </option>
-                      ))}
-                    </select>
+                      <ChevronDownIcon
+                        aria-hidden="true"
+                        className={`
+                          ml-3
+                          size-5
+                          shrink-0
+                          text-gray-500
+                          transition-transform
+                          duration-200
+                          ${
+                            isServiceOpen
+                              ? 'rotate-180 text-amber-500'
+                              : ''
+                          }
+                        `}
+                      />
+                    </button>
+
+                    {/* Dropdown */}
+                    {isServiceOpen && (
+                      <div
+                        role="listbox"
+                        aria-label="Изберете услуга"
+                        className="
+                          absolute
+                          left-0
+                          right-0
+                          top-[calc(100%+0.5rem)]
+                          z-50
+                          max-h-64
+                          overflow-y-auto
+                          overscroll-contain
+                          rounded-xl
+                          border
+                          border-white/10
+                          bg-gray-900
+                          p-1.5
+                          shadow-2xl
+                          shadow-black/40
+                          ring-1
+                          ring-black/20
+                        "
+                      >
+                        {services.map((service) => {
+                          const isSelected =
+                            selectedService === service;
+
+                          return (
+                            <button
+                              key={service}
+                              type="button"
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => {
+                                setSelectedService(service);
+                                setIsServiceOpen(false);
+                              }}
+                              className={`
+                                flex
+                                w-full
+                                items-center
+                                justify-between
+                                gap-3
+                                rounded-lg
+                                px-3
+                                py-3
+                                text-left
+                                text-sm
+                                transition-colors
+                                ${
+                                  isSelected
+                                    ? 'bg-amber-500/10 text-amber-500'
+                                    : 'text-gray-300 hover:bg-white/[0.06] hover:text-white'
+                                }
+                              `}
+                            >
+                              <span className="min-w-0 truncate">
+                                {service}
+                              </span>
+
+                              {isSelected && (
+                                <CheckIcon className="size-4 shrink-0 text-amber-500" />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
+
+                  {/* Form value */}
+                  <input
+                    type="hidden"
+                    name="service"
+                    value={selectedService}
+                  />
                 </div>
 
                 {/* Message */}
-                <div>
+                <div className="min-w-0">
                   <label
                     htmlFor="message"
                     className="text-sm font-semibold text-white"
@@ -438,6 +563,7 @@ export default function ContactForm() {
                     className="
                       mt-2
                       w-full
+                      min-w-0
                       resize-none
                       rounded-xl
                       border
@@ -486,7 +612,13 @@ export default function ContactForm() {
                 >
                   Изпрати запитване
 
-                  <span className="transition-transform duration-200 group-hover:translate-x-1">
+                  <span
+                    className="
+                      transition-transform
+                      duration-200
+                      group-hover:translate-x-1
+                    "
+                  >
                     →
                   </span>
                 </button>
