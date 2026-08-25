@@ -1,43 +1,161 @@
 @import "tailwindcss";
 
-.projects-swiper .swiper-button-next,
-.projects-swiper .swiper-button-prev {
+.imagess-swiper .swiper-button-prev,
+.imagess-swiper .swiper-button-next {
   width: 48px;
   height: 48px;
-  border: 1px solid rgb(255 255 255 / 0.15);
-  border-radius: 9999px;
-  background: rgb(17 24 39 / 0.8);
-  backdrop-filter: blur(12px);
+  margin-top: -24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(3, 7, 18, 0.85);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+
+  color: #f59e0b;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.projects-swiper .swiper-button-next::after,
-.projects-swiper .swiper-button-prev::after {
-  font-size: 16px;
+.imagess-swiper .swiper-button-prev:active,
+.imagess-swiper .swiper-button-next:active {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #030712;
+
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  ::slotted(svg),
+  svg {
+    height: 20px !important;
+  }
+}
+
+.imagess-swiper .swiper-button-prev::after,
+.imagess-swiper .swiper-button-next::after {
+  font-size: 6px;
   font-weight: 700;
-  color: white;
 }
 
-.projects-swiper .swiper-button-next:hover,
-.projects-swiper .swiper-button-prev:hover {
-  border-color: rgb(245 158 11 / 0.5);
-  background: rgb(245 158 11);
+.imagess-swiper .swiper-button-prev:hover {
+  transform: translateX(-2px);
 }
 
-.projects-swiper .swiper-button-next:hover::after,
-.projects-swiper .swiper-button-prev:hover::after {
-  color: rgb(17 24 39);
+.imagess-swiper .swiper-button-next:hover {
+  transform: translateX(2px);
+}
+
+.imagess-swiper .swiper-button-disabled {
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .reviews-swiper .swiper-pagination-bullet {
-  width: 7px;
-  height: 7px;
-  opacity: 1;
-  background: rgb(255 255 255 / 0.2);
+  width: 8px;
+  height: 8px;
+  background: #f59e0b;
+  opacity: 0.35;
   transition: all 0.3s ease;
 }
 
 .reviews-swiper .swiper-pagination-bullet-active {
   width: 24px;
   border-radius: 9999px;
-  background: rgb(245 158 11);
+  background: #f59e0b;
+  opacity: 1;
+}
+
+.gallery-swiper .swiper-button-prev,
+.gallery-swiper .swiper-button-next {
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+
+  border-radius: 9999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(3, 7, 18, 0.8);
+
+  border: 1px solid rgba(245, 158, 11, 0.35);
+
+  color: #f59e0b;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.gallery-swiper .swiper-button-prev:hover,
+.gallery-swiper .swiper-button-next:hover {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #030712;
+}
+
+.gallery-swiper .swiper-button-prev::after,
+.gallery-swiper .swiper-button-next::after {
+  font-size: 12px !important;
+  font-weight: 800;
+}
+
+.gallery-swiper .swiper-button-prev:hover {
+  transform: translateX(-2px);
+}
+
+.gallery-swiper .swiper-button-next:hover {
+  transform: translateX(2px);
+}
+
+.gallery-swiper .swiper-button-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Pagination */
+
+.gallery-swiper .swiper-pagination {
+  bottom: 24px !important;
+}
+
+.gallery-swiper .swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+
+  margin: 0 4px !important;
+
+  background: #f59e0b;
+
+  opacity: 0.35;
+
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.gallery-swiper .swiper-pagination-bullet:hover {
+  opacity: 0.7;
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+  width: 24px;
+
+  border-radius: 9999px;
+
+  background: #f59e0b;
+
+  opacity: 1;
 }

@@ -1,67 +1,36 @@
+
 import {
   PhoneIcon,
-  EnvelopeIcon,
   MapPinIcon,
   ClockIcon,
   ArrowUpRightIcon,
 } from '@heroicons/react/24/outline';
-
-const contactInfo = [
-  {
-    title: 'Телефон',
-    value: '+359 000 000 000',
-    description: 'Понеделник – Петък, 08:00 – 18:00',
-    href: 'tel:+359000000000',
-    icon: PhoneIcon,
-  },
-  {
-    title: 'Email',
-    value: 'office@ivan-stroi.bg',
-    description: 'Отговаряме в рамките на работния ден',
-    href: 'mailto:office@ivan-stroi.bg',
-    icon: EnvelopeIcon,
-  },
-  {
-    title: 'Район на работа',
-    value: 'София и околностите',
-    description: 'Свържете се с нас за конкретен адрес',
-    icon: MapPinIcon,
-  },
-];
-
-const workingHours = [
-  ['Понеделник – Петък', '08:00 – 18:00'],
-  ['Събота', '09:00 – 14:00'],
-  ['Неделя', 'Почивен ден'],
-];
+import Layout from '../../Layout';
+import { OptimizedImage } from '../../components/image/OptimizedImage';
+import { CLOUDINARY_BASE_URL } from '../../utils/url';
+import { workingHours } from './data';
 
 export default function Contacts() {
   return (
+    <Layout>
     <main className="bg-gray-950">
-      {/* ================================================= */}
-      {/* HERO */}
-      {/* ================================================= */}
-
       <section className="relative isolate overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0 -z-20">
-          <img
-            src="/images/contact-hero.jpg"
+          <OptimizedImage
+            url={`${CLOUDINARY_BASE_URL}/v1787399749/hero-img-2.jpg`}
             alt="Ivan Stroi строителни дейности"
             className="size-full object-cover object-center"
           />
         </div>
-
-        {/* Overlay */}
         <div
           className="
             absolute
             inset-0
             -z-10
             bg-gradient-to-r
-            from-gray-950
-            via-gray-950/90
-            to-gray-950/50
+            from-gray-950/95
+            via-gray-950/75
+            to-gray-950/35
           "
         />
 
@@ -195,82 +164,6 @@ export default function Contacts() {
           </div>
         </div>
       </section>
-
-      {/* ================================================= */}
-      {/* CONTACT INFO */}
-      {/* ================================================= */}
-
-      <section className="relative bg-gray-950 py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-5 md:grid-cols-3">
-            {contactInfo.map((item) => {
-              const Icon = item.icon;
-
-              const content = (
-                <div
-                  className="
-                    group
-                    h-full
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-white/[0.02]
-                    p-7
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:border-amber-500/30
-                    hover:bg-white/[0.04]
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      size-12
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-amber-500/10
-                      text-amber-500
-                      ring-1
-                      ring-amber-500/20
-                      transition-all
-                      group-hover:bg-amber-500
-                      group-hover:text-gray-950
-                    "
-                  >
-                    <Icon className="size-6" />
-                  </div>
-
-                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
-                    {item.title}
-                  </p>
-
-                  <p className="mt-2 text-xl font-bold text-white">
-                    {item.value}
-                  </p>
-
-                  <p className="mt-2 text-sm leading-6 text-gray-500">
-                    {item.description}
-                  </p>
-                </div>
-              );
-
-              return item.href ? (
-                <a key={item.title} href={item.href}>
-                  {content}
-                </a>
-              ) : (
-                <div key={item.title}>{content}</div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================= */}
-      {/* FORM + HOURS */}
-      {/* ================================================= */}
 
       <section
         id="contact-form"
@@ -621,25 +514,46 @@ export default function Contacts() {
                 </div>
               </div>
 
-              {/* Phone CTA */}
+              {/* Phone Card */}
               <div
                 className="
                   mt-5
                   rounded-3xl
                   border
-                  border-amber-500/20
-                  bg-amber-500/[0.05]
+                  border-white/10
+                  bg-gray-950
                   p-7
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-amber-500/30
+                  hover:bg-white/[0.02]
                 "
               >
-                <p className="text-sm text-gray-400">
-                  Предпочитате директен разговор?
+                <div
+                  className="
+                    flex
+                    size-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-amber-500/10
+                    text-amber-500
+                    ring-1
+                    ring-amber-500/20
+                  "
+                >
+                  <PhoneIcon className="size-6" />
+                </div>
+
+                <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
+                  Телефон
                 </p>
 
                 <a
                   href="tel:+359000000000"
                   className="
-                    mt-3
+                    mt-2
                     block
                     text-2xl
                     font-black
@@ -651,50 +565,60 @@ export default function Contacts() {
                   +359 000 000 000
                 </a>
 
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-2 text-sm leading-6 text-gray-500">
                   Обадете ни се за безплатна консултация.
+                </p>
+              </div>
+
+              {/* Location Card */}
+              <div
+                className="
+                  mt-5
+                  rounded-3xl
+                  border
+                  border-white/10
+                  bg-gray-950
+                  p-7
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-amber-500/30
+                  hover:bg-white/[0.02]
+                "
+              >
+                <div
+                  className="
+                    flex
+                    size-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-amber-500/10
+                    text-amber-500
+                    ring-1
+                    ring-amber-500/20
+                  "
+                >
+                  <MapPinIcon className="size-6" />
+                </div>
+
+                <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
+                  Район на работа
+                </p>
+
+                <p className="mt-2 text-xl font-bold text-white">
+                  София и околностите
+                </p>
+
+                <p className="mt-2 text-sm leading-6 text-gray-500">
+                  Свържете се с нас за конкретен адрес и посещение на обекта.
                 </p>
               </div>
             </aside>
           </div>
         </div>
       </section>
-
-      {/* ================================================= */}
-      {/* MAP */}
-      {/* ================================================= */}
-
-      <section className="bg-gray-950 pb-24 sm:pb-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden rounded-3xl border border-white/10">
-            <div className="relative h-[400px] bg-gray-900">
-              {/* Replace this with Google Maps / Leaflet */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  flex
-                  items-center
-                  justify-center
-                  bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.08),transparent_50%)]
-                "
-              >
-                <div className="text-center">
-                  <MapPinIcon className="mx-auto size-10 text-amber-500" />
-
-                  <p className="mt-4 text-lg font-bold text-white">
-                    София и околностите
-                  </p>
-
-                  <p className="mt-1 text-sm text-gray-500">
-                    Свържете се с нас за посещение на обекта
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
+    </Layout>
   );
 }
