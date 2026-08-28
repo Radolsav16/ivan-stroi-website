@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CLOUDINARY_BASE_URL } from "../../utils/url";
 import { OptimizedImage } from "../image/OptimizedImage";
 import { services } from "./data";
@@ -65,9 +66,9 @@ export default function Services() {
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <a
+            <Link
               key={service.id}
-              href={'/gallery'}
+              to={service.href}
               className="
                 group
                 relative
@@ -182,7 +183,7 @@ export default function Services() {
                   group-hover:w-full
                 "
               />
-            </a>
+            </Link>
           ))}
         </div>
       </div>

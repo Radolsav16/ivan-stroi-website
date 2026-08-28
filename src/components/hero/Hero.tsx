@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CLOUDINARY_BASE_URL } from "../../utils/url";
 import { OptimizedImage } from "../image/OptimizedImage";
 
@@ -51,8 +52,6 @@ export default function Hero() {
       to-transparent
     "
       />
-
-      {/* Amber ambient glow */}
       <div
         aria-hidden="true"
         className="
@@ -68,11 +67,9 @@ export default function Hero() {
     "
       />
 
-      {/* Hero content */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex min-h-[calc(100vh-120px)] items-center py-24 sm:py-32 lg:py-40">
           <div className="max-w-3xl">
-            {/* Badge */}
             <div className="mb-8">
               <div
                 className="
@@ -136,8 +133,6 @@ export default function Hero() {
               <br />
               <span className="text-amber-500">Нашата отговорност.</span>
             </h1>
-
-            {/* Description */}
             <p
               className="
             mt-8
@@ -148,13 +143,13 @@ export default function Hero() {
             sm:text-xl
           "
             >
-              Изграждаме пространства, които остават. Качествено строителство,
+              Качествено строителство,
               прецизност и отношение към всеки детайл.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href="/contact-us"
+              <Link
+                to="/contact-us"
                 className="
               group
               inline-flex
@@ -166,7 +161,7 @@ export default function Hero() {
               py-3.5
               text-sm
               font-bold
-              text-gray-950
+              text-white
               shadow-xl
               shadow-amber-500/20
               transition-all
@@ -187,10 +182,10 @@ export default function Hero() {
                 >
                   →
                 </span>
-              </a>
+              </Link>
 
-              <a
-                href="/gallery"
+              <Link
+                to="/gallery"
                 className="
               inline-flex
               items-center
@@ -212,7 +207,7 @@ export default function Hero() {
             "
               >
                 Разгледай проектите
-              </a>
+              </Link>
             </div>
 
 

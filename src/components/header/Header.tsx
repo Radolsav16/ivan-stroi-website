@@ -5,217 +5,33 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Popover,
-  PopoverButton,
   PopoverGroup,
-  PopoverPanel,
 } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { callsToAction, navLinks, services } from "./data";
+import { Link } from "react-router-dom";
+import HomeLink from "./components/HomeLink";
+import { MobileHamburgerButton } from "./components/MobileHamburgerButton";
+import ServiceNavigationDropdown from "./components/ServiceNavigationDropdown";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-gray-950/90 shadow-2xl shadow-black/20 backdrop-blur-xl">
+    <header className="sticky top-0 z-50  bg-gray-950 shadow-2xl shadow-black/20 backdrop-blur-xl">
       <nav
-        aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8"
       >
-        <div className="flex lg:flex-1">
-          <a href="/" className="group -m-1.5 flex items-center gap-3 p-1.5">
-            <span className="text-xxl font-medium uppercase tracking-[0.2em] text-amber-500 sm:block">
-               IVAN STROI
-            </span>
-          </a>
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className="
-          -m-2.5
-          inline-flex
-          items-center
-          justify-center
-          rounded-xl
-          p-2.5
-          text-gray-300
-          transition
-          hover:bg-white/5
-          hover:text-white
-        "
-          >
-            <Bars3Icon aria-hidden="true" className="size-6" />
-          </button>
-        </div>
-
+        <HomeLink />
+        <MobileHamburgerButton onClick={() => setMobileMenuOpen(true)} />
+       
         <PopoverGroup className="hidden items-center lg:flex lg:gap-x-2">
-          <Popover className="relative">
-            <PopoverButton
-              className="
-            group
-            flex
-            items-center
-            gap-x-2
-            rounded-xl
-            px-4
-            py-2.5
-            text-sm
-            font-semibold
-            text-gray-300
-            transition-all
-            duration-200
-            hover:bg-white/5
-            hover:text-white
-          "
-            >
-              Услуги
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="
-              size-4
-              text-gray-500
-              transition-transform
-              duration-200
-              group-data-open:rotate-180
-              group-hover:text-amber-500
-            "
-              />
-            </PopoverButton>
-
-            <PopoverPanel
-              transition
-              className="
-    absolute
-    left-1/2
-    z-50
-    mt-4
-    w-[calc(100vw-2rem)]
-    max-w-xl
-    -translate-x-1/2
-    overflow-y-auto
-    overscroll-contain
-    rounded-2xl
-    border
-    border-white/10
-    bg-gray-900/95
-    shadow-2xl
-    shadow-black/50
-    backdrop-blur-xl
-
-    max-h-[calc(100vh-6rem)]
-    sm:max-h-[calc(100vh-7rem)]
-
-    transition
-    data-closed:translate-y-2
-    data-closed:opacity-0
-    data-enter:duration-200
-    data-enter:ease-out
-    data-leave:duration-150
-    data-leave:ease-in
-  "
-            >
-              <div className="p-3">
-                {services.map((item) => (
-                  <div
-                    key={item.title}
-                    className="
-                  group
-                  relative
-                  flex
-                  items-center
-                  gap-x-4
-                  rounded-xl
-                  p-3
-                  transition-all
-                  duration-200
-                  hover:bg-white/5
-                "
-                  >
-                    <div
-                      className="
-                    flex
-                    size-12
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-amber-500/10
-                    text-amber-500
-                    ring-1
-                    ring-amber-500/20
-                    transition-all
-                    duration-200
-                    group-hover:bg-amber-500
-                    group-hover:text-gray-950
-                    group-hover:ring-amber-500
-                  "
-                    >
-                      {item.icon}
-                    </div>
-                    <div className="flex-auto">
-                      <a
-                        href={item.id}
-                        className="block text-sm font-semibold text-white"
-                      >
-                        {item.title}
-
-                        <span className="absolute inset-0" />
-                      </a>
-                    </div>
-
-                    {/* Arrow */}
-                    <div
-                      className="
-                    hidden
-                    text-gray-600
-                    transition-all
-                    duration-200
-                    group-hover:translate-x-1
-                    group-hover:text-amber-500
-                    sm:block
-                  "
-                    >
-                      →
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 border-t border-white/10 bg-white/[0.02]">
-                {callsToAction.map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    className="
-                  flex
-                  items-center
-                  justify-center
-                  gap-2.5
-                  px-4
-                  py-4
-                  text-sm
-                  font-semibold
-                  text-gray-300
-                  transition-all
-                  duration-200
-                  first:border-r
-                  first:border-white/10
-                  hover:bg-white/5
-                  hover:text-white
-                "
-                  >
-                    {item.title}
-                  </a>
-                ))}
-              </div>
-            </PopoverPanel>
-          </Popover>
+          <ServiceNavigationDropdown services={services} callsToAction={callsToAction}/>
           {navLinks.map((item) => (
-            <a
+            <Link
               key={item.title}
-              href={item.href}
+              to={item.href}
               className="
             relative
             rounded-xl
@@ -247,13 +63,13 @@ export default function Header() {
               group-hover:w-1/2
             "
               />
-            </a>
+            </Link>
           ))}
         </PopoverGroup>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/contacts"
+          <Link
+            to="/contact-us"
             className="
           group
           inline-flex
@@ -265,7 +81,7 @@ export default function Header() {
           py-2.5
           text-sm
           font-bold
-          text-gray-950
+          text-white
           shadow-lg
           shadow-amber-500/20
           transition-all
@@ -286,7 +102,7 @@ export default function Header() {
             >
               →
             </span>
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog
@@ -314,11 +130,16 @@ export default function Header() {
       "
         >
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5">
-              <span className="text-xxl font-medium uppercase tracking-[0.2em] text-amber-500 sm:block font-bold">
-                IVAN STROI
+            <Link to="/" className="-m-1.5 p-1.5">
+                <span className="text-2xl font-extrabold uppercase tracking-[0.15em] transition-transform duration-300 group-hover:scale-[1.03] sm:block">
+              <span className="text-amber-500 transition-colors duration-300 group-hover:text-amber-400">
+                IVAN
               </span>
-            </a>
+              <span className="text-white transition-colors duration-300 group-hover:text-amber-500">
+                STROI
+              </span>
+            </span>
+            </Link>
 
             <button
               type="button"
@@ -371,11 +192,11 @@ export default function Header() {
                   </DisclosureButton>
 
                   <DisclosurePanel className="mt-2 space-y-1">
-                    {services.map((item) => (
+                    {services.map((item,idx) => (
                       <DisclosureButton
-                        key={item.title}
+                        key={idx}
                         as="a"
-                        href={item.id}
+                        href={`/services/${item.id}`}
                         className="
                       group
                       flex
@@ -397,8 +218,8 @@ export default function Header() {
                   </DisclosurePanel>
                 </Disclosure>
 
-                <a
-                  href="/gallery"
+                <Link
+                  to="/gallery"
                   className="
                 block
                 rounded-xl
@@ -411,10 +232,10 @@ export default function Header() {
               "
                 >
                   Галерия
-                </a>
+                </Link>
 
-                <a
-                  href="/about-us"
+                <Link
+                  to="/about-us"
                   className="
                 block
                 rounded-xl
@@ -427,10 +248,10 @@ export default function Header() {
               "
                 >
                   За нас
-                </a>
+                </Link>
 
-                <a
-                  href="/contact-us"
+                <Link
+                  to="/contact-us"
                   className="
                 block
                 rounded-xl
@@ -443,11 +264,11 @@ export default function Header() {
               "
                 >
                   Контакти
-                </a>
+                </Link>
               </div>
               <div className="py-6">
-                <a
-                  href="/contacts-us"
+                <Link
+                  to="/contacts-us"
                   className="
                 flex
                 w-full
@@ -460,7 +281,7 @@ export default function Header() {
                 py-3.5
                 text-sm
                 font-bold
-                text-gray-white
+                text-white
                 shadow-lg
                 shadow-amber-500/20
                 transition
@@ -470,7 +291,7 @@ export default function Header() {
                 >
                   Заяви безплатен оглед
                   <span>→</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

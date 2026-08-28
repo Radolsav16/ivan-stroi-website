@@ -6,11 +6,12 @@ import {
 } from '@heroicons/react/24/outline';
 
 import { navigation, services } from './data';
+import { Link } from 'react-router-dom';
+import { CLOUDINARY_BASE_URL } from '../../utils/url';
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-gray-950">
-      {/* Background glow */}
       <div
         aria-hidden="true"
         className="
@@ -28,7 +29,6 @@ export default function Footer() {
       />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Main footer */}
         <div
           className="
             grid
@@ -39,10 +39,9 @@ export default function Footer() {
             lg:gap-16
           "
         >
-          {/* Brand */}
           <div>
-            <a
-              href="/"
+            <Link
+              to="/"
               className="
                 inline-block
                 text-xl
@@ -53,8 +52,15 @@ export default function Footer() {
                 hover:text-amber-500
               "
             >
-              IVAN<span className="text-amber-500"> STROI</span>
-            </a>
+             <span className="text-2xl font-extrabold uppercase tracking-[0.15em] transition-transform duration-300 group-hover:scale-[1.03] sm:block">
+              <span className="text-amber-500 transition-colors duration-300 group-hover:text-amber-400">
+                IVAN
+              </span>
+              <span className="text-white transition-colors duration-300 group-hover:text-amber-500">
+                STROI
+              </span>
+            </span>
+            </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-gray-500">
               Качествени строителни и ремонтни услуги с внимание
@@ -62,8 +68,8 @@ export default function Footer() {
               които остават.
             </p>
 
-            <a
-              href="/kontakti"
+            <Link
+              to="/contact-us"
               className="
                 group
                 mt-7
@@ -87,10 +93,9 @@ export default function Footer() {
                   group-hover:translate-x-1
                 "
               />
-            </a>
+            </Link>
           </div>
 
-          {/* Navigation */}
           <div>
             <h3 className="text-sm font-bold text-white">
               Навигация
@@ -99,8 +104,8 @@ export default function Footer() {
             <ul className="mt-6 space-y-4">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="
                       inline-block
                       text-sm
@@ -112,7 +117,7 @@ export default function Footer() {
                     "
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -127,8 +132,8 @@ export default function Footer() {
             <ul className="mt-6 space-y-4">
               {services.map((service) => (
                 <li key={service.title}>
-                  <a
-                    href={service.href}
+                  <Link
+                    to={`/services/${service.href}`}
                     className="
                       inline-block
                       text-sm
@@ -140,22 +145,20 @@ export default function Footer() {
                     "
                   >
                     {service.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className="text-sm font-bold text-white">
               Контакти
             </h3>
 
             <div className="mt-6 space-y-5">
-              {/* Phone */}
-              <a
-                href="tel:+359000000000"
+              <Link
+                to="tel:+359000000000"
                 className="group flex gap-3"
               >
                 <PhoneIcon
@@ -185,11 +188,11 @@ export default function Footer() {
                     +359 000 000 000
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* Email */}
-              <a
-                href="mailto:office@ivan-stroi.bg"
+              <Link
+                to="mailto:office@ivan-stroi.bg"
                 className="group flex gap-3"
               >
                 <EnvelopeIcon
@@ -219,7 +222,7 @@ export default function Footer() {
                     office@ivan-stroi.bg
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* Location */}
               <div className="flex gap-3">
@@ -261,7 +264,7 @@ export default function Footer() {
           "
         >
           <p className="text-xs text-gray-600">
-            © {new Date().getFullYear()} Ivan Stroi. Всички права запазени.
+            © {new Date().getFullYear()} IVAN STROI. Всички права запазени.
           </p>
 
           <p className="text-xs text-gray-600">
