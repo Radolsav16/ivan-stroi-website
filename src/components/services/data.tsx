@@ -111,4 +111,14 @@ export const services = [
     icon: <PanelTop className="size-6" />,
     href: "/services/shpaklovane",
   },
+  {
+    id: "gipsokarton",
+    number: "12",
+    title: "Гипсокартон",
+    description:
+      "Изпълняваме качествени гипсокартонени конструкции за стени, тавани, преградни помещения и декоративни елементи.",
+    image: "/v1787864650/service-img-12.jpg",
+    icon: <PanelTop className="size-6" />,
+    href: "/services/gipsokarton",
+  }
 ];

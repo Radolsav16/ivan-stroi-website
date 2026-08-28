@@ -1,29 +1,48 @@
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  PhoneIcon,
-  MapPinIcon,
-  ClockIcon,
+  ArrowRightIcon,
   ArrowUpRightIcon,
-} from '@heroicons/react/24/outline';
-import Layout from '../../Layout';
-import { OptimizedImage } from '../../components/image/OptimizedImage';
-import { CLOUDINARY_BASE_URL } from '../../utils/url';
-import { workingHours } from './data';
+  CheckIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
+import Layout from "../../Layout";
+import { OptimizedImage } from "../../components/image/OptimizedImage";
+import { CLOUDINARY_BASE_URL } from "../../utils/url";
+
+const services = [
+  "Ремонт на баня",
+  "Ремонт на апартаменти и къщи",
+  "Мазилки",
+  "Гипсокартон",
+  "Стълбища и дворни дейности",
+  "ВиК инсталации",
+  "Бояджийски услуги",
+  "Полиране на естествен камък",
+  "Електроинсталации",
+  "Лепене на естествен камък",
+  "Лепене на плочки",
+  "Шпакловане",
+];
 
 export default function Contacts() {
+  const [selectedService, setSelectedService] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Layout>
-    <main className="bg-gray-950">
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-20">
-          <OptimizedImage
-            url={`${CLOUDINARY_BASE_URL}/v1787399749/hero-img-2.jpg`}
-            alt="Ivan Stroi строителни дейности"
-            className="size-full object-cover object-center"
-          />
-        </div>
-        <div
-          className="
+      <main className="overflow-hidden bg-gray-950 text-white">
+        {/* HERO */}
+        <section className="relative isolate overflow-hidden py-24 sm:py-32">
+          <div className="absolute inset-0 -z-20">
+            <OptimizedImage
+              url={`${CLOUDINARY_BASE_URL}/v1787399749/hero-img-2.jpg`}
+              alt="Ivan Stroi строителни дейности"
+              className="size-full object-cover object-center"
+            />
+          </div>
+          <div
+            className="
             absolute
             inset-0
             -z-10
@@ -32,12 +51,12 @@ export default function Contacts() {
             via-gray-950/75
             to-gray-950/35
           "
-        />
+          />
 
-        {/* Amber glow */}
-        <div
-          aria-hidden="true"
-          className="
+          {/* Amber glow */}
+          <div
+            aria-hidden="true"
+            className="
             absolute
             -right-40
             top-1/2
@@ -48,577 +67,462 @@ export default function Contacts() {
             bg-amber-500/10
             blur-3xl
           "
-        />
+          />
 
-        <div className="mx-auto max-w-7xl px-6 py-28 lg:px-8 lg:py-36">
-          <div className="max-w-3xl">
-            {/* Eyebrow */}
-            <div className="mb-6 flex items-center gap-3">
-              <span className="h-px w-10 bg-amber-500" />
-
-              <span
-                className="
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.25em]
-                  text-amber-500
-                "
-              >
-                Контакти
-              </span>
-            </div>
-
-            <h1
-              className="
-                text-5xl
-                font-black
-                tracking-tight
-                text-white
-                sm:text-6xl
-                lg:text-7xl
-              "
-            >
-              Нека поговорим
-              <br />
-              за Вашия
-              <span className="text-amber-500">
-                {' '}
-                проект.
-              </span>
-            </h1>
-
-            <p
-              className="
-                mt-8
-                max-w-2xl
-                text-lg
-                leading-8
-                text-gray-300
-                sm:text-xl
-              "
-            >
-              Имате идея за ремонт, строителство или обновяване?
-              Разкажете ни за нея и ще се свържем с Вас, за да
-              обсъдим най-доброто решение.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#contact-form"
-                className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  bg-amber-500
-                  px-6
-                  py-3.5
-                  text-sm
-                  font-bold
-                  text-gray-950
-                  shadow-xl
-                  shadow-amber-500/10
-                  transition-all
-                  hover:bg-amber-400
-                "
-              >
-                Направете запитване
-
-                <ArrowUpRightIcon
-                  className="
-                    size-5
-                    transition-transform
-                    group-hover:translate-x-1
-                    group-hover:-translate-y-1
-                  "
-                />
-              </a>
-
-              <a
-                href="tel:+359000000000"
-                className="
-                  inline-flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  border
-                  border-white/15
-                  bg-white/5
-                  px-6
-                  py-3.5
-                  text-sm
-                  font-semibold
-                  text-white
-                  backdrop-blur-sm
-                  transition-all
-                  hover:bg-white/10
-                "
-              >
-                <PhoneIcon className="size-5 text-amber-500" />
-
-                Обади се сега
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="contact-form"
-        className="relative overflow-hidden bg-gray-900 py-24 sm:py-32"
-      >
-        {/* Glow */}
-        <div
-          aria-hidden="true"
-          className="
-            absolute
-            left-1/2
-            top-0
-            -z-10
-            size-[500px]
-            -translate-x-1/2
-            rounded-full
-            bg-amber-500/5
-            blur-3xl
-          "
-        />
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-24">
-            {/* Form */}
-            <div>
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl">
               <div className="mb-5 flex items-center gap-3">
                 <span className="h-px w-10 bg-amber-500" />
 
                 <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber-500">
-                  Направете запитване
+                  Свържете се с нас
                 </span>
               </div>
 
-              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                Разкажете ни
-                <br />
-                за Вашия проект.
-              </h2>
+              <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
+                Нека обсъдим{" "}
+                <span className="text-amber-500">вашия проект.</span>
+              </h1>
 
-              <p className="mt-5 max-w-xl text-base leading-7 text-gray-400">
-                Попълнете формата и ни изпратете основна информация
-                за проекта. Ще се свържем с Вас възможно най-скоро.
+              <p className="mt-6 max-w-2xl text-base leading-8 text-gray-400 sm:text-lg">
+                Имате нужда от ремонт или строителна услуга? Свържете се с нас и
+                ще обсъдим вашия проект, срокове и възможните решения.
               </p>
-
-              <form className="mt-10 space-y-6">
-                {/* Name + Phone */}
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="text-sm font-semibold text-gray-300"
-                    >
-                      Име
-                    </label>
-
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Вашето име"
-                      className="
-                        mt-2
-                        block
-                        w-full
-                        rounded-xl
-                        border
-                        border-white/10
-                        bg-gray-950
-                        px-4
-                        py-3.5
-                        text-sm
-                        text-white
-                        outline-none
-                        placeholder:text-gray-600
-                        transition
-                        focus:border-amber-500/50
-                        focus:ring-1
-                        focus:ring-amber-500/50
-                      "
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="text-sm font-semibold text-gray-300"
-                    >
-                      Телефон
-                    </label>
-
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+359 ..."
-                      className="
-                        mt-2
-                        block
-                        w-full
-                        rounded-xl
-                        border
-                        border-white/10
-                        bg-gray-950
-                        px-4
-                        py-3.5
-                        text-sm
-                        text-white
-                        outline-none
-                        placeholder:text-gray-600
-                        transition
-                        focus:border-amber-500/50
-                        focus:ring-1
-                        focus:ring-amber-500/50
-                      "
-                    />
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-semibold text-gray-300"
-                  >
-                    Email
-                  </label>
-
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    className="
-                      mt-2
-                      block
-                      w-full
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-gray-950
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-white
-                      outline-none
-                      placeholder:text-gray-600
-                      transition
-                      focus:border-amber-500/50
-                      focus:ring-1
-                      focus:ring-amber-500/50
-                    "
-                  />
-                </div>
-
-                {/* Service */}
-                <div>
-                  <label
-                    htmlFor="service"
-                    className="text-sm font-semibold text-gray-300"
-                  >
-                    Каква услуга Ви интересува?
-                  </label>
-
-                  <select
-                    id="service"
-                    name="service"
-                    defaultValue=""
-                    className="
-                      mt-2
-                      block
-                      w-full
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-gray-950
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-gray-300
-                      outline-none
-                      transition
-                      focus:border-amber-500/50
-                      focus:ring-1
-                      focus:ring-amber-500/50
-                    "
-                  >
-                    <option value="" disabled>
-                      Изберете услуга
-                    </option>
-
-                    <option value="bathroom">
-                      Ремонт на баня
-                    </option>
-
-                    <option value="apartment">
-                      Ремонт на апартамент
-                    </option>
-
-                    <option value="house">
-                      Ремонт на къща
-                    </option>
-
-                    <option value="construction">
-                      Строителство
-                    </option>
-
-                    <option value="other">
-                      Друго
-                    </option>
-                  </select>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-semibold text-gray-300"
-                  >
-                    Допълнителна информация
-                  </label>
-
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    placeholder="Разкажете ни накратко за Вашия проект..."
-                    className="
-                      mt-2
-                      block
-                      w-full
-                      resize-none
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-gray-950
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-white
-                      outline-none
-                      placeholder:text-gray-600
-                      transition
-                      focus:border-amber-500/50
-                      focus:ring-1
-                      focus:ring-amber-500/50
-                    "
-                  />
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="
-                    group
-                    inline-flex
-                    w-full
-                    items-center
-                    justify-center
-                    gap-3
-                    rounded-xl
-                    bg-amber-500
-                    px-6
-                    py-4
-                    text-sm
-                    font-bold
-                    text-gray-950
-                    shadow-lg
-                    shadow-amber-500/10
-                    transition-all
-                    hover:bg-amber-400
-                    hover:shadow-amber-500/20
-                    active:scale-[0.99]
-                    sm:w-auto
-                  "
-                >
-                  Изпрати запитване
-
-                  <ArrowUpRightIcon
-                    className="
-                      size-5
-                      transition-transform
-                      group-hover:translate-x-1
-                      group-hover:-translate-y-1
-                    "
-                  />
-                </button>
-
-                <p className="text-xs leading-5 text-gray-600">
-                  С изпращането на формата се съгласявате с
-                  политиката ни за поверителност.
-                </p>
-              </form>
             </div>
+          </div>
+        </section>
 
-            {/* Right side */}
-            <aside>
+        <section
+          className="
+    relative isolate overflow-hidden
+    pb-24 pt-8
+    sm:pb-32 sm:pt-14
+    lg:pt-20
+  "
+        >
+          {/* Background image */}
+          <div className="absolute inset-0 -z-20">
+            <OptimizedImage
+              url={`${CLOUDINARY_BASE_URL}/v1787399749/hero-img-2.jpg`}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          {/* Dark overlays */}
+          <div className="absolute inset-0 -z-10 bg-gray-950/90" />
+
+          <div
+            className="
+      absolute inset-0 -z-10
+      bg-gradient-to-b
+      from-gray-950
+      via-gray-950/85
+      to-gray-950
+    "
+          />
+
+          {/* Amber glow */}
+          <div
+            className="
+      absolute -left-40 top-1/3 -z-10
+      h-[500px] w-[500px]
+      rounded-full
+      bg-amber-500/10
+      blur-[140px]
+    "
+          />
+
+          <div
+            className="
+      absolute -right-40 bottom-0 -z-10
+      h-[450px] w-[450px]
+      rounded-full
+      bg-amber-500/5
+      blur-[120px]
+    "
+          />
+
+          <div
+            className="
+      relative mx-auto
+      max-w-7xl
+      px-6
+      lg:px-8
+    "
+          >
+            <div
+              className="
+        grid
+        items-start
+        gap-8
+        lg:grid-cols-[1fr_0.8fr]
+        lg:gap-12
+      "
+            >
+              {/* FORM WRAPPER */}
               <div
                 className="
-                  rounded-3xl
-                  border
-                  border-white/10
-                  bg-gray-950
-                  p-7
-                  sm:p-8
-                "
+          relative
+          rounded-3xl
+          border border-white/10
+          bg-gray-950/80
+          p-6
+          shadow-2xl shadow-black/30
+          backdrop-blur-xl
+          sm:p-8
+          lg:mt-8
+          lg:p-10
+        "
               >
+                {/* top accent */}
                 <div
                   className="
-                    flex
-                    size-12
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-amber-500/10
-                    text-amber-500
-                    ring-1
-                    ring-amber-500/20
-                  "
-                >
-                  <ClockIcon className="size-6" />
+            absolute left-8 right-8 top-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-amber-500
+            to-transparent
+            opacity-70
+          "
+                />
+
+                <div className="mb-8">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-500">
+                    Запитване
+                  </p>
+
+                  <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
+                    Разкажете ни за вашия проект
+                  </h2>
+
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500">
+                    Опишете накратко какво искате да направим и ще се свържем с
+                    вас.
+                  </p>
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-white">
-                  Работно време
-                </h3>
+                <form className="space-y-6">
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div>
+                      <label className="mb-2 block text-sm font-semibold text-gray-300">
+                        Име
+                      </label>
 
-                <div className="mt-6 divide-y divide-white/10">
-                  {workingHours.map(([day, hours]) => (
-                    <div
-                      key={day}
-                      className="flex justify-between gap-4 py-4 text-sm"
+                      <input
+                        type="text"
+                        placeholder="Вашето име"
+                        className="
+                  w-full rounded-xl
+                  border border-white/10
+                  bg-white/[0.04]
+                  px-4 py-3.5
+                  text-sm text-white
+                  outline-none
+                  transition
+                  placeholder:text-gray-600
+                  hover:border-white/20
+                  focus:border-amber-500/60
+                  focus:bg-white/[0.06]
+                  focus:ring-2
+                  focus:ring-amber-500/10
+                "
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-2 block text-sm font-semibold text-gray-300">
+                        Телефон
+                      </label>
+
+                      <input
+                        type="tel"
+                        placeholder="08xx xxx xxx"
+                        className="
+                  w-full rounded-xl
+                  border border-white/10
+                  bg-white/[0.04]
+                  px-4 py-3.5
+                  text-sm text-white
+                  outline-none
+                  transition
+                  placeholder:text-gray-600
+                  hover:border-white/20
+                  focus:border-amber-500/60
+                  focus:bg-white/[0.06]
+                  focus:ring-2
+                  focus:ring-amber-500/10
+                "
+                      />
+                    </div>
+                  </div>
+
+                  {/* SERVICE DROPDOWN */}
+                  <div className="relative">
+                    <label className="mb-2 block text-sm font-semibold text-gray-300">
+                      Услуга
+                    </label>
+
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen((prev) => !prev)}
+                      className="
+                flex w-full items-center justify-between
+                rounded-xl
+                border border-white/10
+                bg-white/[0.04]
+                px-4 py-3.5
+                text-left text-sm
+                outline-none
+                transition
+                hover:border-white/20
+                focus:border-amber-500/60
+                focus:ring-2
+                focus:ring-amber-500/10
+              "
                     >
-                      <span className="text-gray-500">
-                        {day}
-                      </span>
-
                       <span
                         className={
-                          hours === 'Почивен ден'
-                            ? 'text-gray-600'
-                            : 'font-semibold text-white'
+                          selectedService ? "text-white" : "text-gray-600"
                         }
                       >
-                        {hours}
+                        {selectedService || "Изберете услуга"}
                       </span>
-                    </div>
-                  ))}
-                </div>
+
+                      <svg
+                        className={`size-5 text-gray-500 transition-transform duration-200 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 111.08 1.04l-4.25-4.51a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+
+                    {isOpen && (
+                      <>
+                        <button
+                          type="button"
+                          aria-label="Затвори менюто"
+                          onClick={() => setIsOpen(false)}
+                          className="fixed inset-0 z-30 sm:hidden"
+                        />
+
+                        <div
+                          className="
+                    absolute left-0 right-0 top-full z-50 mt-2
+                    overflow-hidden rounded-2xl
+                    border border-white/10
+                    bg-gray-900
+                    shadow-2xl shadow-black/50
+                  "
+                        >
+                          <div className="max-h-[280px] overflow-y-auto p-1.5">
+                            {services.map((service) => {
+                              const active = selectedService === service;
+
+                              return (
+                                <button
+                                  key={service}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedService(service);
+                                    setIsOpen(false);
+                                  }}
+                                  className={`
+                            flex w-full items-center justify-between
+                            rounded-xl px-3 py-3
+                            text-left text-sm
+                            transition-colors
+                            ${
+                              active
+                                ? "bg-amber-500/10 text-amber-500"
+                                : "text-gray-300 hover:bg-white/[0.05] hover:text-white"
+                            }
+                          `}
+                                >
+                                  <span>{service}</span>
+
+                                  {active && (
+                                    <CheckIcon className="ml-3 size-4 shrink-0" />
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="mb-2 block text-sm font-semibold text-gray-300">
+                      Съобщение
+                    </label>
+
+                    <textarea
+                      rows={5}
+                      placeholder="Разкажете ни накратко за вашия проект..."
+                      className="
+                w-full resize-none rounded-xl
+                border border-white/10
+                bg-white/[0.04]
+                px-4 py-3.5
+                text-sm text-white
+                outline-none
+                transition
+                placeholder:text-gray-600
+                hover:border-white/20
+                focus:border-amber-500/60
+                focus:bg-white/[0.06]
+                focus:ring-2
+                focus:ring-amber-500/10
+              "
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="
+              group flex w-full items-center justify-center gap-3
+              rounded-xl
+              bg-amber-500
+              px-6 py-4
+              text-sm font-black
+              text-gray-950
+              transition-all duration-300
+              hover:bg-amber-400
+              hover:shadow-xl
+              hover:shadow-amber-500/20
+              active:scale-[0.99]
+            "
+                  >
+                    Изпрати запитване
+                    <ArrowRightIcon className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
+                </form>
               </div>
 
-              {/* Phone Card */}
-              <div
-                className="
-                  mt-5
-                  rounded-3xl
-                  border
-                  border-white/10
-                  bg-gray-950
-                  p-7
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-amber-500/30
-                  hover:bg-white/[0.02]
-                "
-              >
-                <div
-                  className="
-                    flex
-                    size-12
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-amber-500/10
-                    text-amber-500
-                    ring-1
-                    ring-amber-500/20
-                  "
-                >
-                  <PhoneIcon className="size-6" />
-                </div>
-
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
-                  Телефон
-                </p>
-
+              {/* RIGHT SIDE */}
+              <div className="flex flex-col lg:pt-8">
+                {/* PHONE */}
                 <a
-                  href="tel:+359000000000"
+                  href="tel:+359888123456"
                   className="
-                    mt-2
-                    block
-                    text-2xl
-                    font-black
-                    text-white
-                    transition-colors
-                    hover:text-amber-500
-                  "
+            group rounded-3xl
+            border border-white/10
+            bg-gray-950/75
+            p-7
+            shadow-xl shadow-black/20
+            backdrop-blur-xl
+            transition-all duration-300
+            hover:-translate-y-1
+            hover:border-amber-500/30
+            hover:bg-gray-950/90
+            sm:p-8
+          "
                 >
-                  +359 000 000 000
+                  <div className="flex items-start justify-between">
+                    <div
+                      className="
+                flex size-12 items-center justify-center
+                rounded-xl
+                bg-amber-500/10
+                text-amber-500
+                ring-1 ring-amber-500/20
+              "
+                    >
+                      <PhoneIcon className="size-6" />
+                    </div>
+
+                    <ArrowUpRightIcon
+                      className="
+                size-5 text-gray-600
+                transition-all duration-300
+                group-hover:-translate-y-1
+                group-hover:translate-x-1
+                group-hover:text-amber-500
+              "
+                    />
+                  </div>
+
+                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
+                    Обадете ни се
+                  </p>
+
+                  <p className="mt-2 text-2xl font-black text-white">
+                    0888 123 456
+                  </p>
+
+                  <p className="mt-2 text-sm text-gray-500">
+                    Понеделник – Петък · 08:00 – 18:00
+                  </p>
                 </a>
 
-                <p className="mt-2 text-sm leading-6 text-gray-500">
-                  Обадете ни се за безплатна консултация.
-                </p>
-              </div>
-
-              {/* Location Card */}
-              <div
-                className="
-                  mt-5
-                  rounded-3xl
-                  border
-                  border-white/10
-                  bg-gray-950
-                  p-7
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-amber-500/30
-                  hover:bg-white/[0.02]
-                "
-              >
+                {/* LOCATION */}
                 <div
                   className="
-                    flex
-                    size-12
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-amber-500/10
-                    text-amber-500
-                    ring-1
-                    ring-amber-500/20
-                  "
+            group mt-5 overflow-hidden
+            rounded-3xl
+            border border-white/10
+            bg-gray-950/80
+            shadow-xl shadow-black/20
+            backdrop-blur-xl
+            transition-all duration-300
+            hover:-translate-y-1
+            hover:border-amber-500/30
+          "
                 >
-                  <MapPinIcon className="size-6" />
+                  <div className="p-7 sm:p-8">
+                    <div className="flex items-start justify-between">
+                      <div
+                        className="
+                  flex size-12 items-center justify-center
+                  rounded-xl
+                  bg-amber-500/10
+                  text-amber-500
+                  ring-1 ring-amber-500/20
+                "
+                      >
+                        <MapPinIcon className="size-6" />
+                      </div>
+
+                      <ArrowUpRightIcon className="size-5 text-gray-600" />
+                    </div>
+
+                    <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
+                      Нашата локация
+                    </p>
+
+                    <h3 className="mt-2 text-xl font-black text-white">
+                      София, България
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-6 text-gray-500">
+                      Работим в София и околностите.
+                    </p>
+                  </div>
+
+                  <div className="relative h-52 overflow-hidden border-t border-white/10 sm:h-60">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d93836.37954469488!2d23.241374288250867!3d42.695528666755244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa8682cb317bf5%3A0x400a01269bf5e60!2sSofia!5e0!3m2!1sen!2sbg!4v1787930044869!5m2!1sen!2sbg"
+                      width="600"
+                      height="450"
+                      loading="lazy"
+                    ></iframe>
+                  </div>
                 </div>
-
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">
-                  Район на работа
-                </p>
-
-                <p className="mt-2 text-xl font-bold text-white">
-                  София и околностите
-                </p>
-
-                <p className="mt-2 text-sm leading-6 text-gray-500">
-                  Свържете се с нас за конкретен адрес и посещение на обекта.
-                </p>
               </div>
-            </aside>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
     </Layout>
   );
 }

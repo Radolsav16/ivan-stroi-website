@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CLOUDINARY_BASE_URL } from "../../../utils/url";
 import { OptimizedImage } from "../../image/OptimizedImage";
 
@@ -61,8 +62,8 @@ export default function WorkWithUs() {
               за да превърнем идеята Ви в реалност.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="/contact-us"
+              <Link
+                to="/contact-us"
                 className="
                   group
                   inline-flex
@@ -74,7 +75,7 @@ export default function WorkWithUs() {
                   py-3.5
                   text-sm
                   font-bold
-                  text-gray-950
+                  text-white
                   shadow-xl
                   shadow-amber-500/20
                   transition-all
@@ -96,10 +97,10 @@ export default function WorkWithUs() {
                 >
                   →
                 </span>
-              </a>
+              </Link>
 
-              <a
-                href="tel:+359000000000"
+              <Link
+                to="tel:+359000000000"
                 className="
                   group
                   inline-flex
@@ -121,7 +122,7 @@ export default function WorkWithUs() {
                 "
               >
                 Обади се сега
-              </a>
+              </Link>
             </div>
 
             <div className="mt-10 flex items-center gap-4">

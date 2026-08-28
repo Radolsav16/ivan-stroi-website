@@ -1,6 +1,7 @@
 import { OptimizedImage } from "../../image/OptimizedImage";
 import { CLOUDINARY_BASE_URL } from "../../../utils/url";
 import { features } from "./data";
+import { Link } from "react-router-dom";
 
 export default function StrongSides() {
   return (
@@ -19,26 +20,79 @@ export default function StrongSides() {
           blur-3xl
         "
       />
-
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
-          <div className="mb-6 flex items-center gap-3">
-            <span className="h-px w-10 bg-amber-500" />
-            <span
+           <div className="relative">
+            <div
+              aria-hidden="true"
               className="
+                absolute
+                -inset-4
+                rounded-[2rem]
+                bg-amber-500/10
+                blur-2xl
+              "
+            />
+            <div
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[2rem]
+                border
+                border-white/10
+                bg-gray-900
+                shadow-2xl
+                shadow-black/40
+              "
+            >
+              <OptimizedImage
+                url={`${CLOUDINARY_BASE_URL}/v1787401298/bathroom-3.jpg`}
+                alt="Снимка на завършен проект (баня)"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="
+                  aspect-[4/5]
+                  w-full
+                  object-cover
+                  object-center
+                  transition-transform
+                  duration-1000
+                  group-hover:scale-105
+                "
+              />
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-gray-950/80
+                  via-gray-950/10
+                  to-transparent
+                "
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-amber-500" />
+
+              <span
+                className="
                   text-xs
                   font-bold
                   uppercase
                   tracking-[0.25em]
                   text-amber-500
                 "
-            >
-              Защо да изберете нас
-            </span>
-          </div>
-
-          <h2
-            className="
+              >
+                Защо да изберете нас
+              </span>
+            </div>
+            <h2
+              className="
                 text-4xl
                 font-bold
                 tracking-tight
@@ -46,29 +100,28 @@ export default function StrongSides() {
                 sm:text-5xl
                 lg:text-6xl
               "
-          >
-            Строим с мисъл за
-            <span className="text-amber-500"> бъдещето.</span>
-          </h2>
-
-          <p
-            className="
+            >
+              Строим с мисъл за
+              <span className="text-amber-500"> бъдещето.</span>
+            </h2>
+            <p
+              className="
                 mt-6
                 max-w-xl
                 text-lg
                 leading-8
                 text-gray-400
               "
-          >
-            За нас качеството не е просто обещание. То е стандарт, който
-            следваме във всеки проект от първата идея до последния детайл.
-          </p>
+            >
+              За нас качеството не е просто обещание. То е стандарт, който
+              следваме във всеки проект от първата идея до последния детайл.
+            </p>
 
-          <div className="mt-10 space-y-3">
-            {features.map((feature, index) => (
-              <div
-                key={feature.name}
-                className="
+            <div className="mt-10 space-y-3">
+              {features.map((feature, index) => (
+                <div
+                  key={feature.name}
+                  className="
                     group
                     flex
                     items-start
@@ -82,10 +135,11 @@ export default function StrongSides() {
                     duration-300
                     hover:border-amber-500/30
                     hover:bg-white/[0.04]
+                    cursor-pointer
                   "
-              >
-                <div
-                  className="
+                >
+                  <div
+                    className="
                       flex
                       size-10
                       shrink-0
@@ -103,116 +157,34 @@ export default function StrongSides() {
                       group-hover:bg-amber-500
                       group-hover:text-gray-950
                     "
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div className="pt-1">
-                  <feature.icon
-                    aria-hidden="true"
-                    className="
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <div className="pt-1">
+                    <feature.icon
+                      aria-hidden="true"
+                      className="
                         size-5
                         text-gray-500
                         transition-colors
                         duration-300
                         group-hover:text-amber-500
                       "
-                  />
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-bold text-white">
+                      {feature.name}
+                    </h3>
+
+                    <p className="mt-1 text-sm leading-6 text-gray-500">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-
-                <div>
-                  <h3 className="text-base font-bold text-white">
-                    {feature.name}
-                  </h3>
-
-                  <p className="mt-1 text-sm leading-6 text-gray-500">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10">
-            <a
-              href="/about-us"
-              className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-2
-                  text-sm
-                  font-bold
-                  text-amber-500
-                  transition-colors
-                  hover:text-amber-400
-                "
-            >
-              Научете повече за нас
-              <span
-                className="
-                    transition-transform
-                    duration-200
-                    group-hover:translate-x-1
-                  "
-              >
-                →
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <div className="relative">
-          <div
-            aria-hidden="true"
-            className="
-                absolute
-                -inset-4
-                rounded-[2rem]
-                bg-amber-500/10
-                blur-2xl
-              "
-          />
-
-          <div
-            className="
-                group
-                relative
-                overflow-hidden
-                rounded-[2rem]
-                border
-                border-white/10
-                bg-gray-900
-                shadow-2xl
-                shadow-black/40
-              "
-          >
-            <OptimizedImage
-              url={`${CLOUDINARY_BASE_URL}/v1787401298/bathroom-3.jpg`}
-              alt="Снимка на завършен проект(баня)"
-              priority
-              sizes="100vw"
-              className="
-        h-full
-        w-full
-        object-cover
-        object-center
-        transition-transform
-        duration-[2000ms]
-        hover:scale-105
-      "
-            />
-
-            <div
-              className="
-                  absolute
-                  inset-0
-                  bg-gradient-to-t
-                  from-gray-950/80
-                  via-gray-950/10
-                  to-transparent
-                "
-            />
+              ))}
+            </div>
           </div>
         </div>
       </div>

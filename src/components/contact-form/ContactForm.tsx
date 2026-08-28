@@ -17,7 +17,6 @@ export default function ContactForm() {
 
   const serviceDropdownRef = useRef(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -134,10 +133,7 @@ export default function ContactForm() {
                     sm:text-4xl
                   "
                 >
-                  Нека обсъдим
-                  <span className="block text-gray-400">
-                    вашия проект.
-                  </span>
+                  Нека обсъдим вашия проект.
                 </h2>
 
                 <p className="mt-5 text-sm leading-7 text-gray-400 sm:mt-6 sm:text-base">
