@@ -7,7 +7,7 @@ import {
 
 import { navigation, services } from './data';
 import { Link } from 'react-router-dom';
-import { CLOUDINARY_BASE_URL } from '../../utils/url';
+// import { CLOUDINARY_BASE_URL } from '../../utils/url';
 
 export default function Footer() {
   return (
@@ -97,10 +97,6 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold text-white">
-              Навигация
-            </h3>
-
             <ul className="mt-6 space-y-4">
               {navigation.map((item) => (
                 <li key={item.name}>

@@ -1,7 +1,7 @@
 import { OptimizedImage } from "../../image/OptimizedImage";
 import { CLOUDINARY_BASE_URL } from "../../../utils/url";
 import { features } from "./data";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default function StrongSides() {
   return (

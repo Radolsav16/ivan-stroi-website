@@ -2,7 +2,7 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 
-export default function ServiceNavigationDropdown({ services, callsToAction }:{services:any[], callsToAction:any[]}) {
+export default function ServiceNavigationDropdown({ services }:{services:any[], callsToAction:any[]}) {
   return (
     <Popover className="relative">
       <PopoverButton

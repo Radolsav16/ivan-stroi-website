@@ -157,10 +157,6 @@ export default function Reviews() {
                       <p className="text-sm font-bold text-white">
                         {review.name}
                       </p>
-
-                      <p className="mt-1 text-xs text-gray-500">
-                        {review.project}
-                      </p>
                     </div>
                   </div>
                   <div

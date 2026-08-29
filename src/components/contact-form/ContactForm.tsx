@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import {
   UserIcon,
@@ -17,30 +17,30 @@ export default function ContactForm() {
 
   const serviceDropdownRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        serviceDropdownRef.current &&
-        !serviceDropdownRef.current.contains(event.target)
-      ) {
-        setIsServiceOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+  //     if (
+  //       serviceDropdownRef.current &&
+  //       !serviceDropdownRef.current.contains(event.target)
+  //     ) {
+  //       setIsServiceOpen(false);
+  //     }
+  //   };
 
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') {
-        setIsServiceOpen(false);
-      }
-    };
+  //   const handleEscape = (event) => {
+  //     if (event.key === 'Escape') {
+  //       setIsServiceOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('keydown', handleEscape);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //     document.removeEventListener('keydown', handleEscape);
+  //   };
+  // }, []);
 
   return (
     <section

@@ -456,7 +456,7 @@ export const services: Record<string, ServiceData> = {
     description:
       "Полагаме стенни и подови плочки в бани, кухни, тераси и други помещения с внимание към нивата, фугите и цялостната визия.",
 
-    heroImage: "/v1787591081/service-img-1.jpgg",
+    heroImage: "/v1787591081/service-img-1.jpg",
 
     features: [
       {

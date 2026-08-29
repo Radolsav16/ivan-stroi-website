@@ -557,33 +557,6 @@ export default function Gallery() {
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
 
-              <Link
-                to="/services"
-                className="
-                  inline-flex
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-white/10
-                  bg-white/[0.03]
-                  px-7
-                  py-3.5
-                  text-sm
-                  font-bold
-                  text-white
-                  transition-all
-                  duration-300
-                  hover:border-amber-500/30
-                  hover:bg-white/[0.06]
-                  hover:text-amber-500
-                "
-              >
-                Разгледай услугите
-
-                <ArrowUpRight className="size-4" />
-              </Link>
             </div>
           </div>
         </section>

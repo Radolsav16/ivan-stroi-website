@@ -193,10 +193,9 @@ export default function Header() {
 
                   <DisclosurePanel className="mt-2 space-y-1">
                     {services.map((item,idx) => (
-                      <DisclosureButton
+                      <Link
                         key={idx}
-                        as="a"
-                        href={`/services/${item.id}`}
+                        to={`/services/${item.id}`}
                         className="
                       group
                       flex
@@ -213,7 +212,7 @@ export default function Header() {
                     "
                       >
                         {item.title}
-                      </DisclosureButton>
+                      </Link>
                     ))}
                   </DisclosurePanel>
                 </Disclosure>

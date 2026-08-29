@@ -2,7 +2,7 @@ export const navigation = [
   { name: 'Начало', href: '/' },
   { name: 'Проекти', href: '/gallery' },
   { name: 'За нас', href: '/about-us' },
-  { name: 'Контакти', href: '/contacts-us' },
+  { name: 'Контакти', href: '/contact-us' },
 ];
 
 
