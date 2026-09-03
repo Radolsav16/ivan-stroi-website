@@ -1,11 +1,12 @@
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
-export function MobileHamburgerButton({onClick}) {
+export function MobileHamburgerButton({onClick}:{onClick:() => void}) {
     return(
              <div className="flex lg:hidden">
                   <button
                     type="button"
                     onClick={onClick}
+                    aria-label="Отвори менюто"
                     className="
                   -m-2.5
                   inline-flex

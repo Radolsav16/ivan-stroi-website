@@ -1,7 +1,6 @@
 import { OptimizedImage } from "../../image/OptimizedImage";
 import { CLOUDINARY_BASE_URL } from "../../../utils/url";
 import { features } from "./data";
-import { Link } from "react-router-dom";
 
 export default function StrongSides() {
   return (
@@ -48,9 +47,8 @@ export default function StrongSides() {
             >
               <OptimizedImage
                 url={`${CLOUDINARY_BASE_URL}/v1787401298/bathroom-3.jpg`}
-                alt="Снимка на завършен проект (баня)"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                alt="Снимка на завършен проект на IVANOV STROI (баня)"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="
                   aspect-[4/5]
                   w-full
@@ -135,7 +133,6 @@ export default function StrongSides() {
                     duration-300
                     hover:border-amber-500/30
                     hover:bg-white/[0.04]
-                    cursor-pointer
                   "
                 >
                   <div

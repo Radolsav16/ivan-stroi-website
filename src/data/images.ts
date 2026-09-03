@@ -1,70 +1,62 @@
-export  const images = [
+export const images = [
   {
     id: 1,
-    image: '/v1787401140/working-img-41.jpg',
+    image: '/v1787401304/bathroom-6.jpg',
+    alt: 'Завършен проект за баня',
   },
   {
     id: 2,
-    image: '/v1787401114/working-img-40.jpg',
+    image: '/v1787401299/bathroom-4.jpg',
+    alt: 'Интериор на завършена баня',
   },
   {
     id: 3,
-    image: '/v1787401113/working-img-39.jpg',
+    image: '/v1787401298/bathroom-3.jpg',
+    alt: 'Баня, изпълнена от IVANOV STROI',
   },
   {
     id: 4,
-    image: '/v1787401110/working-img-37.jpg',
+    image: '/v1787401113/working-img-39.jpg',
+    alt: 'Работен процес по строителен проект',
   },
   {
     id: 5,
-    image: '/v1787401108/working-img-36.jpg',
+    image: '/v1787401111/working-img-38.jpg',
+    alt: 'Довършителни работи на обект',
   },
   {
     id: 6,
-    image: '/v1787401009/working-img-31.jpg',
+    image: '/v1787400735/toilet-img.jpg',
+    alt: 'Завършен санитарен възел',
   },
   {
     id: 7,
-    image: '/v1787400821/working-img-27.jpg',
+    image: '/v1787400733/bathroom-7.jpg',
+    alt: 'Модерна баня след ремонт',
   },
   {
     id: 8,
-    image: '/v1787400819/working-img-26.jpg',
+    image: '/v1787399641/bathroom-2.jpg',
+    alt: 'Детайл от завършен проект за баня',
   },
   {
     id: 9,
-    image: '/v1787400816/working-img-24.jpg',
+    image: '/v1788383386/working-img-46.jpg',
+    alt: 'Строителни дейности на обект',
   },
   {
     id: 10,
-    image: '/v1787400814/working-img-22.jpg',
+    image: '/v1788383386/bathroom-img-5.jpg',
+    alt: 'Завършена баня с плочки',
   },
   {
     id: 11,
-    image: '/v1787400810/working-img-19.jpg',
+    image: '/v1788383386/bathroom-img-6.jpg',
+    alt: 'Интериорен детайл в баня',
   },
   {
     id: 12,
-    image: '/v1787400806/working-img-16.jpg',
-  },
-  {
-    id: 13,
-    image: '/v1787400805/working-img-15.jpg',
-  },
-  {
-    id: 14,
-    image: '/v1787400801/working-img-13.jpg',
-  },
-  {
-    id: 15,
-    image: '/v1787400745/working-img-8.jpg',
-  },
-  {
-    id: 16,
-    image: '/v1787400740/working-img-4.jpg',
-  },
-  {
-    id: 17,
-    image: '/v1787400735/toilet-img.jpg',
-  },
+    image: '/v1788383386/working-img-45.jpg',
+    alt: 'Екипът на IVANOV STROI по време на работа',
+  }
 ];

@@ -9,7 +9,7 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { callsToAction, navLinks, services } from "./data";
+import { navLinks, services } from "./data";
 import { Link } from "react-router-dom";
 import HomeLink from "./components/HomeLink";
 import { MobileHamburgerButton } from "./components/MobileHamburgerButton";
@@ -18,21 +18,24 @@ import ServiceNavigationDropdown from "./components/ServiceNavigationDropdown";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleMobileNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50  bg-gray-950 shadow-2xl shadow-black/20 backdrop-blur-xl">
-      <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8"
-      >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <HomeLink />
         <MobileHamburgerButton onClick={() => setMobileMenuOpen(true)} />
-       
+
         <PopoverGroup className="hidden items-center lg:flex lg:gap-x-2">
-          <ServiceNavigationDropdown services={services} callsToAction={callsToAction}/>
+          <ServiceNavigationDropdown services={services} />
           {navLinks.map((item) => (
             <Link
               key={item.title}
               to={item.href}
               className="
+            group
             relative
             rounded-xl
             px-4
@@ -66,52 +69,12 @@ export default function Header() {
             </Link>
           ))}
         </PopoverGroup>
-
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/contact-us"
-            className="
-          group
-          inline-flex
-          items-center
-          gap-2
-          rounded-xl
-          bg-amber-500
-          px-5
-          py-2.5
-          text-sm
-          font-bold
-          text-white
-          shadow-lg
-          shadow-amber-500/20
-          transition-all
-          duration-200
-          hover:bg-amber-400
-          hover:shadow-xl
-          hover:shadow-amber-500/30
-          active:scale-95
-        "
-          >
-            Заяви безплатен оглед
-            <span
-              className="
-            transition-transform
-            duration-200
-            group-hover:translate-x-1
-          "
-            >
-              →
-            </span>
-          </Link>
-        </div>
       </nav>
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
         className="lg:hidden"
       >
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-
         <DialogPanel
           className="
         fixed
@@ -130,20 +93,25 @@ export default function Header() {
       "
         >
           <div className="flex items-center justify-between">
-            <Link to="/" className="-m-1.5 p-1.5">
-                <span className="text-2xl font-extrabold uppercase tracking-[0.15em] transition-transform duration-300 group-hover:scale-[1.03] sm:block">
-              <span className="text-amber-500 transition-colors duration-300 group-hover:text-amber-400">
-                IVAN
+            <Link
+              to="/"
+              className="-m-1.5 p-1.5"
+              onClick={handleMobileNavClick}
+            >
+              <span className="text-2xl font-extrabold uppercase tracking-[0.15em] transition-transform duration-300 group-hover:scale-[1.03] sm:block">
+                <span className="text-amber-500 transition-colors duration-300 group-hover:text-amber-400">
+                  IVANOV
+                </span>
+                <span className="text-white transition-colors duration-300 group-hover:text-amber-500">
+                  STROI
+                </span>
               </span>
-              <span className="text-white transition-colors duration-300 group-hover:text-amber-500">
-                STROI
-              </span>
-            </span>
             </Link>
 
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
+              aria-label="Затвори менюто"
               className="
             -m-2.5
             rounded-xl
@@ -187,16 +155,17 @@ export default function Header() {
                     transition-transform
                     group-data-open:rotate-180
                     group-data-open:text-amber-500
+                    cursor-pointer
                   "
                     />
                   </DisclosureButton>
 
                   <DisclosurePanel className="mt-2 space-y-1">
-                    {services.map((item,idx) => (
-                      <DisclosureButton
+                    {services.map((item, idx) => (
+                      <Link
                         key={idx}
-                        as="a"
-                        href={`/services/${item.id}`}
+                        to={`/services/${item.id}`}
+                        onClick={handleMobileNavClick}
                         className="
                       group
                       flex
@@ -213,13 +182,14 @@ export default function Header() {
                     "
                       >
                         {item.title}
-                      </DisclosureButton>
+                      </Link>
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
 
                 <Link
                   to="/gallery"
+                  onClick={handleMobileNavClick}
                   className="
                 block
                 rounded-xl
@@ -236,6 +206,7 @@ export default function Header() {
 
                 <Link
                   to="/about-us"
+                  onClick={handleMobileNavClick}
                   className="
                 block
                 rounded-xl
@@ -252,6 +223,7 @@ export default function Header() {
 
                 <Link
                   to="/contact-us"
+                  onClick={handleMobileNavClick}
                   className="
                 block
                 rounded-xl
@@ -264,33 +236,6 @@ export default function Header() {
               "
                 >
                   Контакти
-                </Link>
-              </div>
-              <div className="py-6">
-                <Link
-                  to="/contacts-us"
-                  className="
-                flex
-                w-full
-                items-center
-                justify-center
-                gap-2
-                rounded-xl
-                bg-amber-500
-                px-5
-                py-3.5
-                text-sm
-                font-bold
-                text-white
-                shadow-lg
-                shadow-amber-500/20
-                transition
-                hover:bg-amber-400
-                active:scale-[0.98]
-              "
-                >
-                  Заяви безплатен оглед
-                  <span>→</span>
                 </Link>
               </div>
             </div>

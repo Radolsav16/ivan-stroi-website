@@ -2,19 +2,15 @@ import { Link } from "react-router-dom";
 import { CLOUDINARY_BASE_URL } from "../../utils/url";
 import { OptimizedImage } from "../image/OptimizedImage";
 
-
-
 export default function Hero() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-950">
-      <div className="absolute inset-0 -z-20">
+    <section className="relative isolate overflow-hidden bg-gray-950">
+      <div aria-hidden="true" className="absolute inset-0 -z-20">
         <OptimizedImage
           url={`${CLOUDINARY_BASE_URL}/v1690000000/hero-img.jpg`}
-          alt="Ivan Stroi строителен проект"
+          alt=""
           width={1920}
-          height={1080}
           priority
-          sizes="100vw"
           className="
         h-full
         w-full
@@ -35,8 +31,8 @@ export default function Hero() {
       -z-10
       bg-gradient-to-r
       from-gray-950
-      via-gray-950/90
-      to-gray-950/40
+      via-gray-950/80
+      to-gray-950/25
     "
       />
       <div
@@ -70,54 +66,6 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex min-h-[calc(100vh-120px)] items-center py-24 sm:py-32 lg:py-40">
           <div className="max-w-3xl">
-            <div className="mb-8">
-              <div
-                className="
-              inline-flex
-              items-center
-              gap-2
-              rounded-full
-              border
-              border-white/10
-              bg-white/5
-              px-4
-              py-2
-              text-sm
-              font-medium
-              text-gray-300
-              shadow-lg
-              shadow-black/10
-              backdrop-blur-md
-            "
-              >
-                <span className="relative flex size-2">
-                  <span
-                    className="
-                  absolute
-                  inline-flex
-                  size-full
-                  animate-ping
-                  rounded-full
-                  bg-amber-400
-                  opacity-75
-                "
-                  />
-
-                  <span
-                    className="
-                  relative
-                  inline-flex
-                  size-2
-                  rounded-full
-                  bg-amber-500
-                "
-                  />
-                </span>
-                Професионално строителство
-              </div>
-            </div>
-
-            {/* Heading */}
             <h1
               className="
             max-w-4xl
@@ -126,12 +74,13 @@ export default function Hero() {
             tracking-tight
             text-white
             sm:text-7xl
-            lg:text-8xl
+            lg:text-7xl
+            animate-fade-up
           "
             >
-              Вашият дом.
+              Вашият дом
               <br />
-              <span className="text-amber-500">Нашата отговорност.</span>
+              <span className="text-amber-500">Нашата отговорност</span>
             </h1>
             <p
               className="
@@ -141,49 +90,19 @@ export default function Hero() {
             leading-8
             text-gray-300
             sm:text-xl
+            animate-fade-up-delay
           "
             >
-              Качествено строителство,
-              прецизност и отношение към всеки детайл.
+              Качествено строителство, прецизност и отношение към всеки детайл.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 to="/contact-us"
-                className="
-              group
-              inline-flex
-              items-center
-              gap-3
-              rounded-xl
-              bg-amber-500
-              px-6
-              py-3.5
-              text-sm
-              font-bold
-              text-white
-              shadow-xl
-              shadow-amber-500/20
-              transition-all
-              duration-200
-              hover:bg-amber-400
-              hover:shadow-2xl
-              hover:shadow-amber-500/30
-              active:scale-95
-            "
+                className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-semibold text-gray-950 shadow-lg shadow-amber-500/20 transition-all duration-200 hover:bg-amber-400 hover:shadow-amber-500/30"
               >
-                Заяви безплатен оглед
-                <span
-                  className="
-                transition-transform
-                duration-200
-                group-hover:translate-x-1
-              "
-                >
-                  →
-                </span>
+                Направи запитване
               </Link>
-
               <Link
                 to="/gallery"
                 className="
@@ -210,7 +129,6 @@ export default function Hero() {
               </Link>
             </div>
 
-
             <div className="mt-14 border-t border-white/10 pt-8">
               <div className="flex flex-wrap gap-x-10 gap-y-6">
                 <div>
@@ -224,9 +142,7 @@ export default function Hero() {
                 <div>
                   <p className="text-2xl font-bold text-white">24/7</p>
 
-                  <p className="mt-1 text-sm text-gray-400">
-                    ангажираност
-                  </p>
+                  <p className="mt-1 text-sm text-gray-400">ангажираност</p>
                 </div>
 
                 <div className="hidden h-12 w-px bg-white/10 sm:block" />
@@ -243,6 +159,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

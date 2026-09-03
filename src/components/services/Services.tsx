@@ -3,8 +3,6 @@ import { CLOUDINARY_BASE_URL } from "../../utils/url";
 import { OptimizedImage } from "../image/OptimizedImage";
 import { services } from "./data";
 
-
-
 export default function Services() {
   return (
     <section className="relative overflow-hidden bg-gray-950 py-24 sm:py-32">
@@ -83,6 +81,7 @@ export default function Services() {
               <OptimizedImage
                 url={`${CLOUDINARY_BASE_URL}${service.image}`}
                 alt={service.title}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 className="
                   absolute
                   inset-0

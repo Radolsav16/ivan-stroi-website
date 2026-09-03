@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { CLOUDINARY_BASE_URL } from "../../../utils/url";
 import { OptimizedImage } from "../../image/OptimizedImage";
 
@@ -42,10 +41,7 @@ export default function WorkWithUs() {
             >
               Имате идея?
               <br />
-
-              <span className="text-amber-500">
-                Нека я изградим.
-              </span>
+              <span className="text-amber-500">Нека я изградим.</span>
             </h2>
             <p
               className="
@@ -57,50 +53,12 @@ export default function WorkWithUs() {
                 sm:text-xl
               "
             >
-              Независимо дали започвате ново строителство,
-              ремонт или цялостно обновяване — ние сме тук,
-              за да превърнем идеята Ви в реалност.
+              Независимо дали започвате ново строителство, ремонт или цялостно
+              обновяване — ние сме тук, за да превърнем идеята Ви в реалност.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                to="/contact-us"
-                className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  bg-amber-500
-                  px-6
-                  py-3.5
-                  text-sm
-                  font-bold
-                  text-white
-                  shadow-xl
-                  shadow-amber-500/20
-                  transition-all
-                  duration-200
-                  hover:bg-amber-400
-                  hover:shadow-2xl
-                  hover:shadow-amber-500/30
-                  active:scale-95
-                "
-              >
-                Заяви безплатен оглед
-
-                <span
-                  className="
-                    transition-transform
-                    duration-200
-                    group-hover:translate-x-1
-                  "
-                >
-                  →
-                </span>
-              </Link>
-
-              <Link
-                to="tel:+359000000000"
+              <a
+                href="tel:+359876884517"
                 className="
                   group
                   inline-flex
@@ -122,7 +80,7 @@ export default function WorkWithUs() {
                 "
               >
                 Обади се сега
-              </Link>
+              </a>
             </div>
 
             <div className="mt-10 flex items-center gap-4">
@@ -175,7 +133,8 @@ export default function WorkWithUs() {
             >
               <OptimizedImage
                 url={`${CLOUDINARY_BASE_URL}/v1787399641/bathroom-2.jpg`}
-                alt="Завършен проект на IVAN STROI баня 2"
+                alt="Завършен проект на IVANOV STROI (баня) 2"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="
                   aspect-[4/3]
                   w-full

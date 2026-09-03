@@ -3,11 +3,10 @@ import {
   EnvelopeIcon,
   MapPinIcon,
   ArrowRightIcon,
-} from '@heroicons/react/24/outline';
+} from "@heroicons/react/24/outline";
 
-import { navigation, services } from './data';
-import { Link } from 'react-router-dom';
-import { CLOUDINARY_BASE_URL } from '../../utils/url';
+import { navigation, services } from "./data";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -52,20 +51,19 @@ export default function Footer() {
                 hover:text-amber-500
               "
             >
-             <span className="text-2xl font-extrabold uppercase tracking-[0.15em] transition-transform duration-300 group-hover:scale-[1.03] sm:block">
-              <span className="text-amber-500 transition-colors duration-300 group-hover:text-amber-400">
-                IVAN
+              <span className="text-2xl font-extrabold uppercase tracking-[0.15em] transition-transform duration-300 group-hover:scale-[1.03] sm:block">
+                <span className="text-amber-500 transition-colors duration-300 group-hover:text-amber-400">
+                  IVANOV
+                </span>
+                <span className="text-white transition-colors duration-300 group-hover:text-amber-500">
+                  STROI
+                </span>
               </span>
-              <span className="text-white transition-colors duration-300 group-hover:text-amber-500">
-                STROI
-              </span>
-            </span>
             </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-gray-500">
-              Качествени строителни и ремонтни услуги с внимание
-              към всеки детайл. Превръщаме вашите идеи в пространства,
-              които остават.
+              Качествени строителни и ремонтни услуги с внимание към всеки
+              детайл. Превръщаме вашите идеи в пространства, които остават.
             </p>
 
             <Link
@@ -84,7 +82,6 @@ export default function Footer() {
               "
             >
               Направи запитване
-
               <ArrowRightIcon
                 className="
                   size-4
@@ -97,10 +94,6 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold text-white">
-              Навигация
-            </h3>
-
             <ul className="mt-6 space-y-4">
               {navigation.map((item) => (
                 <li key={item.name}>
@@ -123,17 +116,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="text-sm font-bold text-white">
-              Услуги
-            </h3>
+            <h3 className="text-sm font-bold text-white">Услуги</h3>
 
             <ul className="mt-6 space-y-4">
               {services.map((service) => (
                 <li key={service.title}>
                   <Link
-                    to={`/services/${service.href}`}
+                    to={`/services/${service.id}`}
                     className="
                       inline-block
                       text-sm
@@ -152,15 +142,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold text-white">
-              Контакти
-            </h3>
+            <h3 className="text-sm font-bold text-white">Контакти</h3>
 
             <div className="mt-6 space-y-5">
-              <Link
-                to="tel:+359000000000"
-                className="group flex gap-3"
-              >
+              <a href="tel:+359876884517" className="group flex gap-3">
                 <PhoneIcon
                   className="
                     mt-0.5
@@ -171,9 +156,7 @@ export default function Footer() {
                 />
 
                 <div>
-                  <p className="text-xs text-gray-600">
-                    Телефон
-                  </p>
+                  <p className="text-xs text-gray-600">Телефон</p>
 
                   <p
                     className="
@@ -185,14 +168,13 @@ export default function Footer() {
                       group-hover:text-amber-500
                     "
                   >
-                    +359 000 000 000
+                    +359 876 884 517
                   </p>
                 </div>
-              </Link>
+              </a>
 
-              {/* Email */}
-              <Link
-                to="mailto:office@ivan-stroi.bg"
+              <a
+                href="mailto:krasenivanov21@gmail.com"
                 className="group flex gap-3"
               >
                 <EnvelopeIcon
@@ -205,9 +187,7 @@ export default function Footer() {
                 />
 
                 <div>
-                  <p className="text-xs text-gray-600">
-                    Email
-                  </p>
+                  <p className="text-xs text-gray-600">Email</p>
 
                   <p
                     className="
@@ -219,12 +199,11 @@ export default function Footer() {
                       group-hover:text-amber-500
                     "
                   >
-                    office@ivan-stroi.bg
+                    krasenivanov21@gmail.com
                   </p>
                 </div>
-              </Link>
+              </a>
 
-              {/* Location */}
               <div className="flex gap-3">
                 <MapPinIcon
                   className="
@@ -236,9 +215,7 @@ export default function Footer() {
                 />
 
                 <div>
-                  <p className="text-xs text-gray-600">
-                    Район на работа
-                  </p>
+                  <p className="text-xs text-gray-600">Район на работа</p>
 
                   <p className="mt-1 text-sm font-semibold text-white">
                     София и околностите
@@ -249,7 +226,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
         <div
           className="
             flex
@@ -264,7 +240,7 @@ export default function Footer() {
           "
         >
           <p className="text-xs text-gray-600">
-            © {new Date().getFullYear()} IVAN STROI. Всички права запазени.
+            © {new Date().getFullYear()} IVANOV STROI. Всички права запазени.
           </p>
 
           <p className="text-xs text-gray-600">

@@ -142,6 +142,7 @@ export default function HowWeWork() {
               <OptimizedImage
                 url={`${CLOUDINARY_BASE_URL}/v1787399614/bathroom-1.jpg`}
                 alt="Проект на IVAN STROI баня"
+                sizes="(min-width: 1024px) 45vw, 100vw"
                 className="
                   aspect-[4/5]
                   w-full

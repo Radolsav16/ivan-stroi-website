@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const label = ['IVAN','STROI']
+const label = ['IVANOV','STROI']
 
 export default function HomeLink(){
 

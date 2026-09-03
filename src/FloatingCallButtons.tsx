@@ -1,7 +1,7 @@
 import { Phone, PhoneCall } from "lucide-react";
 
-const PHONE_NUMBER = "+359 888 123 456";
-const PHONE_LINK = "+359888123456";
+const PHONE_NUMBER = "+359 876 884 517";
+const PHONE_LINK = "+359876884517";
 
 export default function FloatingCallButtons() {
   return (
@@ -32,7 +32,7 @@ export default function FloatingCallButtons() {
           transition-all
           duration-300
           hover:-translate-y-1
-          hover:border-orange-500/40
+          hover:border-amber-500/40
           hover:bg-gray-900
           animate-call-bounce
           sm:bottom-8
@@ -49,10 +49,10 @@ export default function FloatingCallButtons() {
             items-center
             justify-center
             rounded-full
-            bg-orange-500
+            bg-amber-500
             text-white
             shadow-lg
-            shadow-orange-500/20
+            shadow-amber-500/20
           "
         >
           <PhoneCall className="size-4.5" />
@@ -77,15 +77,15 @@ export default function FloatingCallButtons() {
           items-center
           justify-center
           rounded-full
-          bg-orange-500
+          bg-amber-500
           text-white
           shadow-xl
-          shadow-orange-500/30
+          shadow-amber-500/30
           transition-all
           duration-300
           hover:-translate-y-1
-          hover:bg-orange-400
-          hover:shadow-orange-500/40
+          hover:bg-amber-400
+          hover:shadow-amber-500/40
           animate-call-float
           sm:bottom-8
           sm:right-8
@@ -99,7 +99,7 @@ export default function FloatingCallButtons() {
             -z-10
             animate-ping
             rounded-full
-            bg-orange-500/30
+            bg-amber-500/30
           "
         />
 
