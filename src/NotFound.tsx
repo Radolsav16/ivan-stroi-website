@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Home, HardHat } from "lucide-react";
 import Layout from "./Layout";
+import Seo from "./components/seo/Seo";
 
 export default function NotFound() {
   return (
     <Layout>
+    <Seo title="Страницата не е намерена" path="/404" />
     <main className="relative isolate flex min-h-screen items-center overflow-hidden bg-gray-950 text-white">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/10 blur-[140px]" />
+        <div className="absolute left-1/2 top-1/2 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/10 blur-[140px]" />
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:32px_32px]" />
 
@@ -17,7 +19,7 @@ export default function NotFound() {
       <div className="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mx-auto mb-8 flex size-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20 backdrop-blur">
-            <HardHat className="size-7 text-orange-500" />
+            <HardHat className="size-7 text-amber-500" />
           </div>
 
           <div className="relative">
@@ -28,7 +30,7 @@ export default function NotFound() {
 
           {/* Content */}
           <div className="mt-2">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-orange-500">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-amber-500">
               Страницата не е намерена
             </p>
 
@@ -41,7 +43,7 @@ export default function NotFound() {
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all duration-300 hover:bg-orange-400 hover:shadow-orange-500/30 sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-semibold text-gray-950 shadow-lg shadow-amber-500/20 transition-all duration-300 hover:bg-amber-400 hover:shadow-amber-500/30 sm:w-auto"
             >
               <Home className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
               Към началото
@@ -59,7 +61,7 @@ export default function NotFound() {
 
           <div className="mx-auto mt-16 flex items-center justify-center gap-3">
             <span className="h-px w-12 bg-white/10" />
-            <span className="size-1.5 rounded-full bg-orange-500" />
+            <span className="size-1.5 rounded-full bg-amber-500" />
             <span className="h-px w-12 bg-white/10" />
           </div>
         </div>

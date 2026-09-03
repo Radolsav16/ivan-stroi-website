@@ -11,69 +11,32 @@ import {
   Grid3X3,
   PanelTop,
 } from "lucide-react";
+import { services as serviceCards } from "../services/data";
 
-export const services = [
-  {
-    id: "remont-na-banya",
-    title: "Ремонт на баня",
-    icon: <Bath className="size-6" />,
-  },
-  {
-    id: "remont-na-apartamenti",
-    title: "Ремонт на апартаменти и къщи",
-    icon: <House className="size-6" />,
-  },
-  {
-    id: "mazilki",
-    title: "Мазилки",
-    icon: <PaintRoller className="size-6" />,
-  },
-  {
-    id: "stalbishta-dvorno-stroitelstvo",
-    title: "Стълбища и дворно пространство",
-    icon: <Fence className="size-6" />,
-  },
-  {
-    id: "vik-instalatsii",
-    title: "ВиК Инсталации",
-    icon: <Pipette className="size-6" />,
-  },
-  {
-    id: "boyadjijski-uslugi",
-    title: "Бояджийски услуги",
-    icon: <Paintbrush className="size-6" />,
-  },
-  {
-    id: "polirane-na-estestven-kamak",
-    title: "Полиране на естествен камък",
-    icon: <Gem className="size-6" />,
-  },
-  {
-    id: "el-instalatsii",
-    title: "Ел. Инсталации",
-    icon: <Zap className="size-6" />,
-  },
-  {
-    id: "lepene-na-estestven-kamak",
-    title: "Лепене на естествен камък",
-    icon: <Blocks className="size-6" />,
-  },
-  {
-    id: "lepene-na-plochki",
-    title: "Лепене на плочки",
-    icon: <Grid3X3 className="size-6" />,
-  },
-  {
-    id: "shpaklovane",
-    title: "Шпакловане",
-    icon: <PanelTop className="size-6" />,
-  },
-];
+const serviceIcons = {
+  "remont-na-banya": Bath,
+  "remont-na-apartamenti": House,
+  mazilki: PaintRoller,
+  "stalbishta-dvorno-stroitelstvo": Fence,
+  "vik-instalatsii": Pipette,
+  "boyadjijski-uslugi": Paintbrush,
+  "polirane-na-estestven-kamak": Gem,
+  "el-instalatsii": Zap,
+  "lepene-na-estestven-kamak": Blocks,
+  "lepene-na-plochki": Grid3X3,
+  shpaklovane: PanelTop,
+  gipsokarton: PanelTop,
+} as const;
 
-export const callsToAction = [
-  { title: "Заяви безплатен оглед", href: "/contact-us" },
-  { title: "Разгледай проектите", href: "/gallery" },
-];
+export const services = serviceCards.map((service) => {
+  const Icon = serviceIcons[service.id as keyof typeof serviceIcons];
+
+  return {
+    id: service.id,
+    title: service.title,
+    icon: <Icon className="size-6" />,
+  };
+});
 
 export const navLinks = [
   { title: "Галерия", href: "/gallery" },

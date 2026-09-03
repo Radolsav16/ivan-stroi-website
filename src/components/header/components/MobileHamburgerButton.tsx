@@ -6,6 +6,7 @@ export function MobileHamburgerButton({onClick}:{onClick:() => void}) {
                   <button
                     type="button"
                     onClick={onClick}
+                    aria-label="Отвори менюто"
                     className="
                   -m-2.5
                   inline-flex

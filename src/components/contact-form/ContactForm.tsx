@@ -1,46 +1,42 @@
-import { useRef, useState } from 'react';
-
+import { type FormEvent, useState } from "react";
 import {
   UserIcon,
   PhoneIcon,
   EnvelopeIcon,
   WrenchScrewdriverIcon,
-  ChevronDownIcon,
-  CheckIcon,
-} from '@heroicons/react/24/outline';
+} from "@heroicons/react/24/outline";
 
-import { services } from './data';
+import { services } from "./data";
+import { submitContactRequest } from "../../utils/contact";
 
 export default function ContactForm() {
-  const [selectedService, setSelectedService] = useState('');
-  const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const serviceDropdownRef = useRef(null);
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-  //     if (
-  //       serviceDropdownRef.current &&
-  //       !serviceDropdownRef.current.contains(event.target)
-  //     ) {
-  //       setIsServiceOpen(false);
-  //     }
-  //   };
+    if (!form.reportValidity()) {
+      return;
+    }
 
-  //   const handleEscape = (event) => {
-  //     if (event.key === 'Escape') {
-  //       setIsServiceOpen(false);
-  //     }
-  //   };
+    setErrorMessage("");
+    setStatus("submitting");
 
-  //   document.addEventListener('mousedown', handleClickOutside);
-  //   document.addEventListener('keydown', handleEscape);
-
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //     document.removeEventListener('keydown', handleEscape);
-  //   };
-  // }, []);
+    try {
+      const result = await submitContactRequest(form);
+      form.reset();
+      setStatus(result === "sent" ? "success" : "idle");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Запитването не беше изпратено. Моля, опитайте отново.",
+      );
+      setStatus("error");
+    }
+  };
 
   return (
     <section
@@ -137,13 +133,13 @@ export default function ContactForm() {
                 </h2>
 
                 <p className="mt-5 text-sm leading-7 text-gray-400 sm:mt-6 sm:text-base">
-                  Опишете накратко какво планирате и ние ще се свържем
-                  с Вас, за да обсъдим проекта и следващите стъпки.
+                  Опишете накратко какво планирате и ние ще се свържем с Вас, за
+                  да обсъдим проекта и следващите стъпки.
                 </p>
 
                 <div className="mt-9 space-y-5 sm:mt-12 sm:space-y-6">
                   <a
-                    href="tel:+359000000000"
+                    href="tel:+359876884517"
                     className="group flex min-w-0 items-center gap-3 sm:gap-4"
                   >
                     <div
@@ -168,18 +164,16 @@ export default function ContactForm() {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-xs text-gray-500">
-                        Обадете ни се
-                      </p>
+                      <p className="text-xs text-gray-500">Обадете ни се</p>
 
                       <p className="mt-1 truncate text-sm font-semibold text-white transition-colors group-hover:text-amber-500 sm:text-base">
-                        +359 000 000 000
+                        +359 876 884 517
                       </p>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:office@ivan-stroi.bg"
+                    href="mailto:krasenivanov21@gmail.com"
                     className="group flex min-w-0 items-center gap-3 sm:gap-4"
                   >
                     <div
@@ -204,12 +198,10 @@ export default function ContactForm() {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-xs text-gray-500">
-                        Пишете ни
-                      </p>
+                      <p className="text-xs text-gray-500">Пишете ни</p>
 
                       <p className="mt-1 truncate text-sm font-semibold text-white transition-colors group-hover:text-amber-500 sm:text-base">
-                        office@ivan-stroi.bg
+                        krasenivanov21@gmail.com
                       </p>
                     </div>
                   </a>
@@ -217,10 +209,14 @@ export default function ContactForm() {
               </div>
             </div>
             <div className="min-w-0 p-6 sm:p-10 lg:p-14">
-              <form className="space-y-5 sm:space-y-6">
-
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5 sm:space-y-6"
+              >
+                <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+                  <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
                 <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
-  
                   <div className="min-w-0">
                     <label
                       htmlFor="name"
@@ -247,6 +243,10 @@ export default function ContactForm() {
                         name="name"
                         type="text"
                         placeholder="Вашето име"
+                        autoComplete="name"
+                        minLength={2}
+                        maxLength={80}
+                        required
                         className="
                           w-full
                           min-w-0
@@ -271,7 +271,6 @@ export default function ContactForm() {
                     </div>
                   </div>
 
-                  {/* Phone */}
                   <div className="min-w-0">
                     <label
                       htmlFor="phone"
@@ -298,6 +297,11 @@ export default function ContactForm() {
                         name="phone"
                         type="tel"
                         placeholder="+359 ..."
+                        autoComplete="tel"
+                        inputMode="tel"
+                        minLength={10}
+                        maxLength={20}
+                        required
                         className="
                           w-full
                           min-w-0
@@ -322,8 +326,6 @@ export default function ContactForm() {
                     </div>
                   </div>
                 </div>
-
-                {/* Email */}
                 <div className="min-w-0">
                   <label
                     htmlFor="email"
@@ -349,7 +351,10 @@ export default function ContactForm() {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="you@example.com"
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        maxLength={254}
+                        required
                       className="
                         w-full
                         min-w-0
@@ -374,11 +379,7 @@ export default function ContactForm() {
                   </div>
                 </div>
 
-                {/* SERVICE DROPDOWN */}
-                <div
-                  ref={serviceDropdownRef}
-                  className="relative z-30 min-w-0"
-                >
+                <div className="relative z-30 min-w-0">
                   <label
                     htmlFor="service"
                     className="text-sm font-semibold text-white"
@@ -387,7 +388,6 @@ export default function ContactForm() {
                   </label>
 
                   <div className="relative mt-2">
-                    {/* Left icon */}
                     <WrenchScrewdriverIcon
                       aria-hidden="true"
                       className="
@@ -402,147 +402,51 @@ export default function ContactForm() {
                       "
                     />
 
-                    {/* Trigger */}
-                    <button
+                    <select
                       id="service"
-                      type="button"
-                      aria-haspopup="listbox"
-                      aria-expanded={isServiceOpen}
-                      onClick={() =>
-                        setIsServiceOpen((previous) => !previous)
-                      }
-                      className={`
-                        flex
+                      name="service"
+                      defaultValue=""
+                      required
+                      className="
+                        appearance-none
                         w-full
                         min-w-0
-                        items-center
-                        justify-between
                         rounded-xl
                         border
+                        border-white/10
                         bg-white/[0.03]
                         py-3.5
                         pl-12
-                        pr-4
+                        pr-12
                         text-left
                         text-sm
+                        text-gray-300
                         outline-none
                         transition
-                        ${
-                          isServiceOpen
-                            ? 'border-amber-500/50 ring-2 ring-amber-500/10'
-                            : 'border-white/10 hover:border-white/20'
-                        }
-                      `}
+                        focus:border-amber-500/50
+                        focus:bg-white/[0.05]
+                        focus:ring-2
+                        focus:ring-amber-500/10
+                      "
                     >
-                      <span
-                        className={
-                          selectedService
-                            ? 'min-w-0 truncate text-gray-300'
-                            : 'min-w-0 truncate text-gray-600'
-                        }
-                      >
-                        {selectedService || 'Изберете услуга'}
-                      </span>
-
-                      <ChevronDownIcon
-                        aria-hidden="true"
-                        className={`
-                          ml-3
-                          size-5
-                          shrink-0
-                          text-gray-500
-                          transition-transform
-                          duration-200
-                          ${
-                            isServiceOpen
-                              ? 'rotate-180 text-amber-500'
-                              : ''
-                          }
-                        `}
-                      />
-                    </button>
-
-                    {/* Dropdown */}
-                    {isServiceOpen && (
-                      <div
-                        role="listbox"
-                        aria-label="Изберете услуга"
-                        className="
-                          absolute
-                          left-0
-                          right-0
-                          top-[calc(100%+0.5rem)]
-                          z-50
-                          max-h-64
-                          overflow-y-auto
-                          overscroll-contain
-                          rounded-xl
-                          border
-                          border-white/10
-                          bg-gray-900
-                          p-1.5
-                          shadow-2xl
-                          shadow-black/40
-                          ring-1
-                          ring-black/20
-                        "
-                      >
-                        {services.map((service) => {
-                          const isSelected =
-                            selectedService === service;
-
-                          return (
-                            <button
-                              key={service}
-                              type="button"
-                              role="option"
-                              aria-selected={isSelected}
-                              onClick={() => {
-                                setSelectedService(service);
-                                setIsServiceOpen(false);
-                              }}
-                              className={`
-                                flex
-                                w-full
-                                items-center
-                                justify-between
-                                gap-3
-                                rounded-lg
-                                px-3
-                                py-3
-                                text-left
-                                text-sm
-                                transition-colors
-                                ${
-                                  isSelected
-                                    ? 'bg-amber-500/10 text-amber-500'
-                                    : 'text-gray-300 hover:bg-white/[0.06] hover:text-white'
-                                }
-                              `}
-                            >
-                              <span className="min-w-0 truncate">
-                                {service}
-                              </span>
-
-                              {isSelected && (
-                                <CheckIcon className="size-4 shrink-0 text-amber-500" />
-                              )}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
+                      <option value="" disabled>
+                        Изберете услуга
+                      </option>
+                      {services.map((service) => (
+                        <option key={service} value={service} className="bg-gray-900 text-white">
+                          {service}
+                        </option>
+                      ))}
+                    </select>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                    >
+                      ▾
+                    </span>
                   </div>
-
-                  {/* Form value */}
-                  <input
-                    type="hidden"
-                    name="service"
-                    value={selectedService}
-                  />
                 </div>
 
-                {/* Message */}
                 <div className="min-w-0">
                   <label
                     htmlFor="message"
@@ -556,6 +460,9 @@ export default function ContactForm() {
                     name="message"
                     rows={5}
                     placeholder="Опишете накратко проекта..."
+                    minLength={20}
+                    maxLength={2000}
+                    required
                     className="
                       mt-2
                       w-full
@@ -583,6 +490,7 @@ export default function ContactForm() {
                 {/* Submit */}
                 <button
                   type="submit"
+                  disabled={status === "submitting"}
                   className="
                     group
                     flex
@@ -604,10 +512,11 @@ export default function ContactForm() {
                     hover:bg-amber-400
                     hover:shadow-amber-500/20
                     active:scale-[0.99]
+                    disabled:cursor-wait
+                    disabled:opacity-70
                   "
                 >
-                  Изпрати запитване
-
+                  {status === "submitting" ? "Изпращане..." : "Изпрати запитване"}
                   <span
                     className="
                       transition-transform
@@ -619,9 +528,21 @@ export default function ContactForm() {
                   </span>
                 </button>
 
-                <p className="text-center text-xs text-gray-600">
-                  Ще се свържем с Вас възможно най-скоро.
-                </p>
+                {status === "success" && (
+                  <p role="status" className="text-center text-xs text-emerald-400">
+                    Благодарим! Запитването е изпратено успешно.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p role="alert" className="text-center text-xs text-red-300">
+                    {errorMessage}
+                  </p>
+                )}
+                {status === "idle" && (
+                  <p className="text-center text-xs text-gray-600">
+                    Ако формата не е свързана със сървър, ще се отвори Вашето приложение за email.
+                  </p>
+                )}
               </form>
             </div>
           </div>

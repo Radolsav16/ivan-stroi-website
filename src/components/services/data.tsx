@@ -6,7 +6,7 @@ export const services = [
     number: "01",
     title: "Ремонт на баня",
     description:
-      "Цялостен ремонт на баня – подготовка, хидроизолация, ВиК, плочки и монтаж на санитария.",
+      "Цялостен ремонт на баня – подготовка, хидроизолация, ВиК и плочки.",
     image: "/v1787591086/service-img-9.jpg",
     icon: <Bath className="size-6" />,
     href: "/services/remont-na-banya",

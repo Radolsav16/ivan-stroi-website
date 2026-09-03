@@ -1,42 +1,69 @@
-
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import {
   ArrowRightIcon,
   ArrowUpRightIcon,
   CheckIcon,
+  EnvelopeIcon,
   MapPinIcon,
   PhoneIcon,
 } from "@heroicons/react/24/outline";
 
 import Layout from "../../Layout";
 import { OptimizedImage } from "../../components/image/OptimizedImage";
+import Reviews from "../../components/reviews/Reviews";
+import Seo from "../../components/seo/Seo";
 import { CLOUDINARY_BASE_URL } from "../../utils/url";
+import { submitContactRequest } from "../../utils/contact";
+import { services as serviceCards } from "../../components/services/data";
 
-const services = [
-  "Ремонт на баня",
-  "Ремонт на апартаменти и къщи",
-  "Мазилки",
-  "Гипсокартон",
-  "Стълбища и дворни дейности",
-  "ВиК инсталации",
-  "Бояджийски услуги",
-  "Полиране на естествен камък",
-  "Електроинсталации",
-  "Лепене на естествен камък",
-  "Лепене на плочки",
-  "Шпакловане",
-];
+const services = serviceCards.map(({ title }) => title);
 
 export default function Contacts() {
   const [selectedService, setSelectedService] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formError, setFormError] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!selectedService) {
+      setFormError("Моля, изберете услуга.");
+      setFormStatus("error");
+      return;
+    }
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    setFormError("");
+    setFormStatus("submitting");
+
+    try {
+      const result = await submitContactRequest(form);
+      form.reset();
+      setSelectedService("");
+      setFormStatus(result === "sent" ? "success" : "idle");
+    } catch (error) {
+      setFormError(
+        error instanceof Error
+          ? error.message
+          : "Запитването не беше изпратено. Моля, опитайте отново.",
+      );
+      setFormStatus("error");
+    }
+  };
 
   return (
     <Layout>
       <main className="min-h-screen overflow-hidden bg-gray-950 text-white">
-        {/* =====================================================
-            HERO
-        ====================================================== */}
+        <Seo
+          title="Контакти"
+          description="Свържете се с IVANOV STROI за оглед и оферта за строителство или ремонт в София и околностите."
+          path="/contact-us"
+        />
         <section
           className="
             relative isolate overflow-hidden
@@ -48,31 +75,30 @@ export default function Contacts() {
             lg:py-36
           "
         >
-          {/* Background */}
-          <div className="absolute inset-0 -z-20">
+          <div aria-hidden="true" className="absolute inset-0 -z-20">
             <OptimizedImage
-              url={`${CLOUDINARY_BASE_URL}/v1787399749/hero-img-2.jpg`}
-              alt="Ivan Stroi строителни дейности"
+              url={`${CLOUDINARY_BASE_URL}/v1788383386/working-img-46.jpg`}
+              alt=""
+              width={1920}
+              priority
               className="h-full w-full object-cover object-center"
             />
           </div>
 
-          {/* Overlay */}
           <div
             className="
               absolute inset-0 -z-10
               bg-gradient-to-b
-              from-gray-950/95
-              via-gray-950/80
+              from-gray-950/90
+              via-gray-950/65
               to-gray-950
               sm:bg-gradient-to-r
-              sm:from-gray-950/95
-              sm:via-gray-950/80
-              sm:to-gray-950/30
+              sm:from-gray-950/90
+              sm:via-gray-950/65
+              sm:to-gray-950/20
             "
           />
 
-          {/* Amber glow */}
           <div
             aria-hidden="true"
             className="
@@ -117,6 +143,7 @@ export default function Contacts() {
 
               <h1
                 className="
+                  animate-fade-up
                   text-4xl
                   font-black
                   leading-[1.05]
@@ -132,6 +159,7 @@ export default function Contacts() {
 
               <p
                 className="
+                  animate-fade-up-delay
                   mt-5
                   max-w-2xl
                   text-sm
@@ -143,13 +171,12 @@ export default function Contacts() {
                   lg:text-lg
                 "
               >
-                Имате нужда от ремонт или строителна услуга? Свържете се с нас
-                и ще обсъдим вашия проект, срокове и възможните решения.
+                Имате нужда от ремонт или строителна услуга? Свържете се с нас и
+                ще обсъдим вашия проект, срокове и възможните решения.
               </p>
             </div>
           </div>
         </section>
-
 
         <section
           className="
@@ -164,17 +191,16 @@ export default function Contacts() {
             lg:pt-16
           "
         >
-          {/* Background */}
-          <div className="absolute inset-0 -z-20">
+          <div aria-hidden="true" className="absolute inset-0 -z-20">
             <OptimizedImage
-              url={`${CLOUDINARY_BASE_URL}/v1787399749/hero-img-2.jpg`}
+              url={`${CLOUDINARY_BASE_URL}/v1788383386/working-img-45.jpg`}
               alt=""
+              width={1920}
               className="h-full w-full object-cover"
             />
           </div>
 
-          {/* Overlay */}
-          <div className="absolute inset-0 -z-10 bg-gray-950/95" />
+          <div className="absolute inset-0 -z-10 bg-gray-950/88" />
 
           <div
             className="
@@ -188,7 +214,6 @@ export default function Contacts() {
             "
           />
 
-          {/* Glow */}
           <div
             aria-hidden="true"
             className="
@@ -240,9 +265,6 @@ export default function Contacts() {
                 xl:gap-14
               "
             >
-              {/* =================================================
-                  FORM
-              ================================================== */}
               <div
                 className="
                   relative
@@ -262,7 +284,6 @@ export default function Contacts() {
                   lg:p-10
                 "
               >
-                {/* Accent */}
                 <div
                   className="
                     absolute
@@ -299,22 +320,33 @@ export default function Contacts() {
                   </h2>
 
                   <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500">
-                    Опишете накратко какво искате да направим и ще се свържем
-                    с вас.
+                    Опишете накратко какво искате да направим и ще се свържем с
+                    вас.
                   </p>
                 </div>
 
-                <form className="space-y-5 sm:space-y-6">
-                  {/* NAME + PHONE */}
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-5 sm:space-y-6"
+                >
+                  <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+                    <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
                     <div className="min-w-0">
-                      <label className="mb-2 block text-sm font-semibold text-gray-300">
+                      <label htmlFor="contact-name" className="mb-2 block text-sm font-semibold text-gray-300">
                         Име
                       </label>
 
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
                         placeholder="Вашето име"
+                        autoComplete="name"
+                        minLength={2}
+                        maxLength={80}
+                        required
                         className="
                           block
                           w-full
@@ -340,13 +372,20 @@ export default function Contacts() {
                     </div>
 
                     <div className="min-w-0">
-                      <label className="mb-2 block text-sm font-semibold text-gray-300">
+                      <label htmlFor="contact-phone" className="mb-2 block text-sm font-semibold text-gray-300">
                         Телефон
                       </label>
 
                       <input
+                        id="contact-phone"
+                        name="phone"
                         type="tel"
-                        placeholder="08xx xxx xxx"
+                        placeholder="088 335 689"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        minLength={10}
+                        maxLength={20}
+                        required
                         className="
                           block
                           w-full
@@ -371,15 +410,58 @@ export default function Contacts() {
                       />
                     </div>
                   </div>
+                  <div className="min-w-0">
+                    <label htmlFor="contact-email" className="mb-2 block text-sm font-semibold text-gray-300">
+                      Email
+                    </label>
 
-                  {/* SERVICE */}
+                    <div className="relative">
+                      <EnvelopeIcon
+                        aria-hidden="true"
+                        className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-600"
+                      />
+                      <input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        maxLength={254}
+                        required
+                        className="
+                          block
+                          w-full
+                          min-w-0
+                          rounded-xl
+                          border
+                          border-white/10
+                          bg-white/[0.04]
+                          py-3.5
+                          pl-12
+                          pr-4
+                          text-sm
+                          text-white
+                          outline-none
+                          transition
+                          placeholder:text-gray-600
+                          hover:border-white/20
+                          focus:border-amber-500/60
+                          focus:bg-white/[0.06]
+                          focus:ring-2
+                          focus:ring-amber-500/10
+                        "
+                      />
+                    </div>
+                  </div>
                   <div className="relative">
-                    <label className="mb-2 block text-sm font-semibold text-gray-300">
+                      <label id="contact-service-label" className="mb-2 block text-sm font-semibold text-gray-300">
                       Услуга
                     </label>
 
                     <button
                       type="button"
+                      aria-labelledby="contact-service-label"
+                      aria-expanded={isOpen}
                       onClick={() => setIsOpen((prev) => !prev)}
                       className="
                         flex
@@ -409,11 +491,7 @@ export default function Contacts() {
                           min-w-0
                           flex-1
                           truncate
-                          ${
-                            selectedService
-                              ? "text-white"
-                              : "text-gray-600"
-                          }
+                          ${selectedService ? "text-white" : "text-gray-600"}
                         `}
                       >
                         {selectedService || "Изберете услуга"}
@@ -439,6 +517,7 @@ export default function Contacts() {
                         />
                       </svg>
                     </button>
+                    <input type="hidden" name="service" value={selectedService} />
 
                     {isOpen && (
                       <>
@@ -506,9 +585,7 @@ export default function Contacts() {
                                     }
                                   `}
                                 >
-                                  <span className="min-w-0">
-                                    {service}
-                                  </span>
+                                  <span className="min-w-0">{service}</span>
 
                                   {active && (
                                     <CheckIcon className="size-4 shrink-0" />
@@ -524,13 +601,18 @@ export default function Contacts() {
 
                   {/* MESSAGE */}
                   <div>
-                    <label className="mb-2 block text-sm font-semibold text-gray-300">
+                    <label htmlFor="contact-message" className="mb-2 block text-sm font-semibold text-gray-300">
                       Съобщение
                     </label>
 
                     <textarea
+                      id="contact-message"
+                      name="message"
                       rows={5}
                       placeholder="Разкажете ни накратко за вашия проект..."
+                      minLength={20}
+                      maxLength={2000}
+                      required
                       className="
                         block
                         min-h-[140px]
@@ -561,6 +643,7 @@ export default function Contacts() {
                   {/* SUBMIT */}
                   <button
                     type="submit"
+                    disabled={formStatus === "submitting"}
                     className="
                       group
                       flex
@@ -582,22 +665,34 @@ export default function Contacts() {
                       hover:shadow-xl
                       hover:shadow-amber-500/20
                       active:scale-[0.99]
+                      disabled:cursor-wait
+                      disabled:opacity-70
                     "
                   >
-                    Изпрати запитване
-
+                    {formStatus === "submitting" ? "Изпращане..." : "Изпрати запитване"}
                     <ArrowRightIcon className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
+                  {formStatus === "success" && (
+                    <p role="status" className="text-center text-sm text-emerald-400">
+                      Благодарим! Запитването е изпратено успешно.
+                    </p>
+                  )}
+                  {formStatus === "error" && (
+                    <p role="alert" className="text-center text-sm text-red-300">
+                      {formError}
+                    </p>
+                  )}
+                  {formStatus === "idle" && (
+                    <p className="text-center text-xs text-gray-600">
+                      Ако формата не е свързана със сървър, ще се отвори Вашето приложение за email.
+                    </p>
+                  )}
                 </form>
               </div>
 
-              {/* =================================================
-                  RIGHT SIDE
-              ================================================== */}
               <div className="flex min-w-0 flex-col gap-5 lg:pt-8">
-                {/* PHONE */}
                 <a
-                  href="tel:+359888123456"
+                  href="tel:+359876884517"
                   className="
                     group
                     block
@@ -656,7 +751,7 @@ export default function Contacts() {
                   </p>
 
                   <p className="mt-2 break-words text-2xl font-black text-white sm:text-3xl">
-                    0888 123 456
+                    +359 876 884 517
                   </p>
 
                   <p className="mt-2 text-sm leading-6 text-gray-500">
@@ -664,7 +759,6 @@ export default function Contacts() {
                   </p>
                 </a>
 
-                {/* LOCATION */}
                 <div
                   className="
                     group
@@ -720,7 +814,6 @@ export default function Contacts() {
                     </p>
                   </div>
 
-                  {/* Responsive map */}
                   <div className="relative aspect-[16/9] min-h-[220px] overflow-hidden border-t border-white/10 sm:min-h-[250px]">
                     <iframe
                       title="Ivan Stroi - София"
@@ -774,9 +867,9 @@ export default function Contacts() {
             </div>
           </div>
         </section>
+
+        <Reviews />
       </main>
     </Layout>
   );
 }
-
-

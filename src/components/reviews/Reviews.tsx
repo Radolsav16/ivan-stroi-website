@@ -1,15 +1,28 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { reviews } from './data';
-
-
+import "swiper/css";
+import "swiper/css/pagination";
+import { OptimizedImage } from "../image/OptimizedImage";
+import { CLOUDINARY_BASE_URL } from "../../utils/url";
+import { reviews } from "./data";
 
 export default function Reviews() {
   return (
-    <section className="relative overflow-hidden bg-gray-950 py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden bg-gray-950 py-24 sm:py-32">
+      <div aria-hidden="true" className="absolute inset-0 -z-20">
+        <OptimizedImage
+          url={`${CLOUDINARY_BASE_URL}/v1787401113/working-img-39.jpg`}
+          alt=""
+          width={1920}
+          sizes="100vw"
+          className="size-full object-cover object-center"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-gray-950/95 via-gray-950/88 to-gray-950/95"
+      />
       <div
         aria-hidden="true"
         className="
@@ -59,21 +72,17 @@ export default function Reviews() {
             <span className="text-amber-500"> клиенти.</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-300">
             Най-добрата оценка за нашата работа са доволните клиенти.
           </p>
         </div>
 
         <div className="mt-16">
           <Swiper
-            modules={[Autoplay, Pagination]}
+            modules={[Pagination]}
             spaceBetween={24}
             slidesPerView={1}
             loop
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
             pagination={{
               clickable: true,
             }}
@@ -101,13 +110,15 @@ export default function Reviews() {
                     rounded-3xl
                     border
                     border-white/10
-                    bg-white/[0.03]
+                    bg-gray-950/75
+                    shadow-2xl
+                    shadow-black/25
+                    backdrop-blur-sm
                     p-8
                     transition-all
                     duration-300
                     hover:-translate-y-1
                     hover:border-amber-500/30
-                    hover:bg-white/[0.05]
                   "
                 >
                   <div
@@ -116,7 +127,6 @@ export default function Reviews() {
                       right-6
                       top-4
                       text-7xl
-                      font-serif
                       leading-none
                       text-amber-500/10
                       transition-colors
@@ -130,10 +140,7 @@ export default function Reviews() {
                   {/* Stars */}
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, index) => (
-                      <span
-                        key={index}
-                        className="text-lg text-amber-500"
-                      >
+                      <span key={index} className="text-lg text-amber-500">
                         ★
                       </span>
                     ))}

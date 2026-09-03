@@ -16,17 +16,19 @@ type OptimizedImageProps = {
 export const OptimizedImage = ({
   url,
   alt,
-  width = 960,
+  width = 1280,
   height,
   className,
-  // sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  sizes = "100vw",
   priority = false,
 }: OptimizedImageProps) => {
+  const supportsCloudinaryTransforms = url.includes("/upload/");
+
   return (
     <img
       src={getCloudinaryUrl(url, { width })}
-      srcSet={getCloudinarySrcSet(url)}
-      // sizes={sizes}
+      srcSet={supportsCloudinaryTransforms ? getCloudinarySrcSet(url) : undefined}
+      sizes={sizes}
       alt={alt}
       width={width}
       height={height}
